@@ -21,6 +21,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'site-form',
 		'enableClientValidation' => true,
+		'enableAjaxValidation' => true,
 		'clientOptions' => array(
 			'validateOnSubmit' => true,
 		),

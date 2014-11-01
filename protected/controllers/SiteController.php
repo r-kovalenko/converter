@@ -34,6 +34,12 @@ class SiteController extends Controller
 				$model->convertNumber();
 			}
 		}
+		if (isset($_POST['ajax'])) {
+			if ($_POST['ajax'] == 'site-form') {
+				echo CActiveForm::validate($model);
+			}
+			Yii::app()->end();
+		}
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index', array('model' => $model));
