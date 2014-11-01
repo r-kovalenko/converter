@@ -9,7 +9,10 @@ class SiteForm extends CFormModel
 {
 	public $number;
 
+	public $number_max = 9999999;
+
 	public $converted_number = NULL;
+
 	private $digits_en = array('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine');
 	private $tens_en = array('ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety');
 	private $teens_en = array("eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen");
@@ -18,12 +21,15 @@ class SiteForm extends CFormModel
 	);
 
 	private $digits_ru = array('один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять');
-	private $tens_ru = array('десять', 'двадцать', 'тридцат', 'сорок', 'пятьдесят', 'шестьдесят', 'семдесят', 'восемдесят', 'девяносто');
+	private $tens_ru = array('десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семдесят', 'восемдесят', 'девяносто');
 	private $teens_ru = array("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать");
-
+	private $hundreds_ru = array('сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот');
 	private $second_words_ru = array(
-		0 => 'сто', 1 => 'тысяча', 2 => 'миллион', 3 => 'миллиард'
+		0 => array('тысяч', 'а', 'и', ''),
+		1 => array('миллион', '', 'а', 'ов'),
+		2 => array('миллиард', '', 'а', 'ов')
 	);
+	private $for_thousands = array('одна', 'две');
 
 
 	/**
@@ -33,36 +39,34 @@ class SiteForm extends CFormModel
 	{
 		return array(
 			array('number', 'required'),
-			// email has to be a valid email address
-			array('number', 'numerical', 'integerOnly' => true, 'min' => 0, 'max' => 99999999999),
+			array('number', 'numerical', 'integerOnly' => true, 'min' => 0, 'max' => $this->number_max),
 
 		);
 	}
 
+	public function attributeLabels()
+	{
+		return array('number' => Yii::t('translate', 'Attribute') . ' ' . Yii::t('translate', 'Number'));
+	}
 	public function convertNumber()
 	{
 
-		$language = Yii::app()->language;
+		$language = Yii::app()->getLanguage();
+		$method = '_doConvertion' . ucfirst($language);
 
-		if ($language == 'ru') {
-			$this->_doConvertionRu();
-		} else {
-			$this->_doConvertionEn();
+		if (method_exists($this, $method)) {
+			$this->$method();
 		}
 
+
 	}
 
-	protected function _doConvertionRu()
-	{
-		$this->_doConvertionEn();
-	}
 
 	protected function _doConvertionEn()
 	{
 		$number = $this->number;
-		if ($number > 9999999999) {
-			$this->converted_number = "$number is too much, try smaller number (<10000)";
-		} elseif ($number == 0) {
+
+		if ($number == 0) {
 			$this->converted_number = "zero";
 		}
 
@@ -75,11 +79,11 @@ class SiteForm extends CFormModel
 
 			foreach ($portions as $key => $portion) {
 
-				$temp = $this->convertThreeDigits($portion);
+				$temp = $this->convertThreeDigitsEn($portion);
 
 				if (is_array($temp)) {
-					if ($key > 0 and $key < 3) {
-						$temp[0] = $temp[0] . ' ' . $this->second_words_ru[$key];
+					if ($key > 0 and $key <= 3) {
+						$temp[0] = $temp[0] . ' ' . $this->second_words_en[$key];
 					}
 
 					$result = array_merge($result, $temp);
@@ -91,7 +95,57 @@ class SiteForm extends CFormModel
 		}
 	}
 
-	public function convertThreeDigits($arr_reverse_number)
+	protected function _doConvertionRu()
+	{
+		$number = $this->number;
+
+		if ($number == 0) {
+			$this->converted_number = "ноль";
+		}
+
+		if (!$this->converted_number) {
+			$result = array();
+
+			$arr_reverse_number = str_split(strrev(strval($number)));
+
+			$portions = array_chunk($arr_reverse_number, 3);
+
+			foreach ($portions as $key => $portion) {
+
+				$temp = $this->convertThreeDigitsRu($portion);
+
+				if (is_array($temp)) {
+					if ($key > 0 and $key <= 3) {
+						//присваиваем название без окончания
+						$second_word = $this->second_words_ru[$key - 1][0];
+						$last_digit = $portion[0];
+						switch ($last_digit) {
+							case 1:
+								$second_word .= $this->second_words_ru[$key - 1][1];
+								break;
+							case 2:
+							case 3:
+								$second_word .= $this->second_words_ru[$key - 1][2];
+								break;
+							default:
+								$second_word .= $this->second_words_ru[$key - 1][3];
+						}
+						if ($key == 1 and isset($this->for_thousands[$last_digit - 1])) {
+							$temp[0] = $this->for_thousands[$last_digit - 1];
+						}
+						$temp[0] = $temp[0] . ' ' . $second_word;
+					}
+
+					$result = array_merge($result, $temp);
+				}
+
+			}
+
+			$this->converted_number = implode(array_reverse($result), ' ');
+		}
+	}
+
+	public function convertThreeDigitsRu($arr_reverse_number)
 	{
 
 		$result = array();
@@ -118,7 +172,45 @@ class SiteForm extends CFormModel
 			}
 
 			if ($pos == 2 and $digit != '0') {
-				$result[$pos] = $result[$pos] . ' ' . $this->second_words_ru[0];
+				$result[$pos] = $this->hundreds_ru[$digit - 1];
+			}
+
+			$prev = $digit;
+
+		}
+
+		return $result;
+
+	}
+
+	public function convertThreeDigitsEn($arr_reverse_number)
+	{
+
+		$result = array();
+
+		$prev = NULL;
+
+		foreach ($arr_reverse_number as $pos => $digit) {
+
+			if ($pos == 0 and $digit != '0') {
+				$result[0] = $this->digits_en[$digit - 1];
+			}
+
+			if ($pos == 1 and $digit != '0') {
+				$result[$pos] = $this->tens_en[$digit - 1];
+			}
+
+			if ($pos == 1 and $digit == 1) {
+				$result[0] = '';
+				$result[$pos] = $this->teens_en[$prev - 1];
+			}
+
+			if ($pos > 1 and $digit != '0') {
+				$result[$pos] = $this->digits_en[$digit - 1];
+			}
+
+			if ($pos == 2 and $digit != '0') {
+				$result[$pos] = $result[$pos] . ' ' . $this->second_words_en[0];
 			}
 
 			$prev = $digit;

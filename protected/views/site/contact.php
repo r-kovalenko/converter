@@ -20,7 +20,7 @@ $this->breadcrumbs = array(
 <?php else: ?>
 
 	<p>
-		If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+		<?php echo Yii::t('translate', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
 	</p>
 
 	<div class="form">
@@ -33,12 +33,13 @@ $this->breadcrumbs = array(
 			),
 		)); ?>
 
-		<p class="note">Fields with <span class="required">*</span> are required.</p>
+		<p class="note"><?php echo Yii::t('translate', 'Fields with'); ?> <span
+				class="required">*</span> <?php echo Yii::t('translate', 'are required'); ?>.</p>
 
 		<?php echo $form->errorSummary($model); ?>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'name'); ?>
+			<?php echo $form->labelEx($model, 'name', array('label' => Yii::t('translate', 'Name'))); ?>
 			<?php echo $form->textField($model, 'name'); ?>
 			<?php echo $form->error($model, 'name'); ?>
 		</div>
@@ -50,33 +51,35 @@ $this->breadcrumbs = array(
 		</div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'subject'); ?>
+			<?php echo $form->labelEx($model, 'subject', array('label' => Yii::t('translate', 'Subject'))); ?>
 			<?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128)); ?>
 			<?php echo $form->error($model, 'subject'); ?>
 		</div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'body'); ?>
+			<?php echo $form->labelEx($model, 'body', array('label' => Yii::t('translate', 'Body'))); ?>
 			<?php echo $form->textArea($model, 'body', array('rows' => 6, 'cols' => 50)); ?>
 			<?php echo $form->error($model, 'body'); ?>
 		</div>
 
 		<?php if (CCaptcha::checkRequirements()): ?>
 			<div class="row">
-				<?php echo $form->labelEx($model, 'verifyCode'); ?>
+				<?php echo $form->labelEx($model, 'verifyCode', array('label' => Yii::t('translate', 'Verification Code'))); ?>
 				<div>
 					<?php $this->widget('CCaptcha'); ?>
 					<?php echo $form->textField($model, 'verifyCode'); ?>
 				</div>
-				<div class="hint">Please enter the letters as they are shown in the image above.
-					<br/>Letters are not case-sensitive.
+				<div
+					class="hint"><?php echo Yii::t('translate', 'Please enter the letters as they are shown in the image above'); ?>
+					.
+					<br/><?php echo Yii::t('translate', 'Letters are not case-sensitive'); ?>.
 				</div>
 				<?php echo $form->error($model, 'verifyCode'); ?>
 			</div>
 		<?php endif; ?>
 
 		<div class="row buttons">
-			<?php echo CHtml::submitButton('Submit'); ?>
+			<?php echo CHtml::submitButton('Submit', array('value' => Yii::t('translate', 'Submit'))); ?>
 		</div>
 
 		<?php $this->endWidget(); ?>

@@ -1,17 +1,30 @@
 <?php
 
-return CMap::mergeArray(
-	require(dirname(__FILE__) . '/main.php'),
-	array(
-		'components' => array(
-			'fixture' => array(
-				'class' => 'system.test.CDbFixtureManager',
+return array(
+	'components' => array(
+		'fixture' => array(
+			'class' => 'system.test.CDbFixtureManager',
+		),
+		'connectionString' => 'Your connection string to your local testing server',
+		'emulatePrepare' => false,
+		'username' => 'admin',
+		'password' => 'password',
+		'charset' => 'utf8',
+	),
+	// Application Log
+	'log' => array(
+		'class' => 'CLogRouter',
+		'routes' => array(
+			array(
+				'class' => 'CFileLogRoute',
+				'levels' => 'error, warning,trace, info',
 			),
-			/* uncomment the following to provide test database connection
-			'db'=>array(
-				'connectionString'=>'DSN for test database',
+
+			// Show log messages on web pages
+			array(
+				'class' => 'CWebLogRoute',
+				'levels' => 'error, warning',
 			),
-			*/
 		),
 	)
 );

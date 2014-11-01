@@ -24,6 +24,10 @@ class Controller extends CController
 
 	public $default_language = 'ru';
 
+	public $seo_description = '';
+	public $seo_keywords = '';
+	public $seo_footer = '';
+
 	public function __construct($id, $module = null)
 	{
 		parent::__construct($id, $module);
@@ -47,6 +51,23 @@ class Controller extends CController
 			$this->redirect(Yii::app()->language);
 		} else {
 			$this->redirect($this->default_language);
+		}
+		$this->_setSeo();
+	}
+
+	protected function _setSeo()
+	{
+		$seo = new Seo();
+		$model_seo = $seo::model();
+		$language = Yii::app()->getLanguage();
+		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
+			$this->seo_description = $record->text;
+		}
+		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
+			$this->seo_keywords = $record->text;
+		}
+		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
+			$this->seo_footer = $record->text;
 		}
 	}
 

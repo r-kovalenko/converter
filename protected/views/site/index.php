@@ -1,61 +1,43 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle = Yii::app()->name;
+$this->pageTitle = Yii::t('translate', Yii::app()->name);
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js')
 ?>
+<div id="text-description-page" class="seo-description">
+	<?php if (!empty($this->seo_footer)) { ?>
+		<div id="short_text" class="seo-description-content box-hide">
+			<h2><?php echo Yii::t('translate', Yii::app()->name) ?></h2>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+			<p>
+				<?php echo $this->seo_footer; ?>
+			</p>
+		</div>
+	<?php } ?>
+</div>
+<h1><?php echo Yii::t('translate', 'Welcome to'); ?>
+	<i><?php echo CHtml::encode(Yii::t('translate', Yii::app()->name)); ?></i></h1>
 <div class="form">
 	<?php $form = $this->beginWidget('CActiveForm', array(
-		'id' => 'generate-form',
+		'id' => 'site-form',
 		'enableClientValidation' => true,
 		'clientOptions' => array(
 			'validateOnSubmit' => true,
 		),
 	)); ?>
 	<div class="row">
-		<?php echo $form->error($model, 'number'); ?>
-		<?php echo $form->labelEx($model, 'number'); ?>
-		<?php echo $form->textField($model, 'number'); ?>
+		<?php echo $form->labelEx($model, Yii::t('translate', 'Number'), array('for' => 'form_input', 'class' => 'form-label')); ?>
+		<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input')); ?>
+		<?php echo $form->error($model, 'number', array('inputID' => 'form_input')); ?>
 	</div>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('OK'); ?>
+		<?php echo CHtml::submitButton('OK', array('class' => 'form-submit')); ?>
 	</div>
 	<?php $this->endWidget(); ?>
 </div>
-<div>
+<div class="converted-text">
 	<p>
-		<?php if ($model->converted_number) echo $model->converted_number; ?>
+		<?php if ($model->converted_number) echo ucfirst($model->converted_number); ?>
 	</p>
 </div>
-<script type="text/javascript">
-	var numbers_words = [
-		["один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"],
-		["десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"],
-		["сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"],
-		["тысяча", "две тысячи", "три тысячи", "четыре тысячи", "пять тысяч", "шесть тысяч", "семь тысяч", "восемь тысяч", "девять тысяч"]
-	];
-	var teen_words = ["одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
-	function translate_numbers_to_words(number) {
-
-		var result = [];
-
-		if (number < 0 || number > 9999) {
-			return "Неправильные входные данные";
-		}
-
-		var str = number.toString().split("").reverse().join("");
-
-		for (var counter = 0; counter < str.length; counter++) {
-			if (counter == 1 && str[counter] == "1") {
-				result.pop();
-				result.push(teen_words[str[counter - 1] - 1]);
-			} else {
-				result.push(numbers_words[counter][str[counter] - 1]);
-			}
-
-		}
-		return result.reverse().join(" ");
-	}
-	console.log(translate_numbers_to_words(9520));
-</script>
+<div id="seo_footer"></div>

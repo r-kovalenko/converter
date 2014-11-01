@@ -1,10 +1,11 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo Yii::app()->language; ?>"
+      lang="<?php echo Yii::app()->language; ?>">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="language" content="en"/>
+	<meta name="language" content="<?php echo Yii::app()->language; ?>"/>
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
@@ -18,8 +19,27 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
+	<?php
+	$cs = Yii::app()->getClientScript();
+	$cs->registerCssFile(Yii::app()->request->baseUrl . '/css/page.css')
+	?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<?php
+	if (!empty($this->seo_description)) {
+		$cs->registerMetaTag(CHtml::encode($this->seo_description), 'description');
+	} else {
+
+	}
+	if (!empty($this->seo_keywords)) {
+		$cs->registerMetaTag(CHtml::encode($this->seo_keywords), 'keywords');
+	} else {
+
+	}
+	$cs->registerMetaTag('index,follow', 'robots');
+	?>
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico"/>
+	<link rel="icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico">
 </head>
 
 <body>
@@ -27,7 +47,9 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><?php
+			echo CHtml::tag('img', array('src' => Yii::app()->request->baseUrl . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img')),
+			CHtml::encode(Yii::t('translate', 'Number to string')); ?></div>
 	</div>
 	<!-- header -->
 	<div id="language-selector" style="float:right; margin:5px;">
@@ -56,10 +78,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		<?php echo Yii::t('translate', 'qqq'); ?>
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?>.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
 	</div>
 	<!-- footer -->
 

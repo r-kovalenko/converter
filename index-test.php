@@ -6,10 +6,11 @@
 
 // change the following paths if necessary
 $yii = dirname(__FILE__) . '/../../../home/rkovalenko/yii/framework/yii.php';
-$config = dirname(__FILE__) . '/protected/config/test.php';
+require_once(dirname(__FILE__) . '/protected/config/environment.php');
+$environment = new Environment(Environment::TEST);
 
 // remove the following line when in production mode
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_DEBUG') or define('YII_DEBUG', $environment->getDebug());
 
 require_once($yii);
-Yii::createWebApplication($config)->run();
+Yii::createWebApplication($environment->getConfig())->run();
