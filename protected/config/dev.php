@@ -1,6 +1,8 @@
 <?php
-
-return array(
+$yiiPath = dirname(__FILE__) . '/../../../../../home/rkovalenko/yii/framework/yii.php';
+$debug = TRUE;
+$trace_level = 3;
+$config = array(
 
 	'modules' => array(
 		// uncomment the following to enable the Gii tool

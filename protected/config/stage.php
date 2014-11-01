@@ -1,5 +1,8 @@
 <?php
-return array(
+$yiiPath = dirname(__FILE__) . '/../../../../../home/rkovalenko/yii/framework/yii.php';
+$debug = true;
+$trace_level = 0;
+$config = array(
 
 	// Application components
 	'components' => array(

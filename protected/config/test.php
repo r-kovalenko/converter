@@ -1,6 +1,8 @@
 <?php
-
-return array(
+$yiiPath = dirname(__FILE__) . '/../../../../../home/rkovalenko/yii/framework/yii.php';
+$debug = false;
+$trace_level = 0;
+$config = array(
 	'components' => array(
 		'fixture' => array(
 			'class' => 'system.test.CDbFixtureManager',
