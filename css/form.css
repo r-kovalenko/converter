@@ -143,3 +143,86 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage {
     clear: left;
     padding-left: 110px;
 }
+
+form .form-input, form textarea {
+    font: 24px Trebuchet MS, Arial, Helvetica, Sans-Serif;
+    color: #6B6B6B;
+    /* отключаем бордюры у инпутов и текстового поля */
+    border: none;
+    /* закругляем углы полей ввода */
+    -moz-border-radius: .3em;
+    -webkit-border-radius: .3em;
+    border-radius: .3em;
+    background-color: #F7F7F7;
+    padding: 3px;
+    /* добавляем внутренние тени у инпутов и текстового поля */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+form .form-label {
+    font: 24px Trebuchet MS, Arial, Helvetica, Sans-Serif;
+    color: #080317;
+}
+
+form .form-input:focus {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    background: #F2F2F2;
+    color: #333;
+}
+
+form textarea {
+    /* устанавливаем ширину текстового поля */
+    height: 100px;
+    width: 677px;
+    overflow: auto;
+}
+
+/* формируем нижний сектор формы */
+form .form-submit {
+    clear: both;
+    padding: 10px 25px 10px;
+    margin: 0;
+    text-align: right;
+}
+
+/* оформляем кнопку отправки */
+form .form-submit {
+    /* устанавливаем необходимую ширину кнопки */
+    width: 120px;
+    line-height: 18px;
+    /* добавляем внешние тени */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    border: solid 1px #2f96b4;
+    /* закругляем углы кнопки */
+    border-radius: 5px;
+    background-color: #49AFCD;
+    /* градиентная заливка для современных браузеров */
+    background-image: -moz-linear-gradient(center top, #5BC0DE, #2F96B4);
+    background-image: -webkit-linear-gradient(center top, #5bc0de, #2f96b4);
+    background-image: -ms-linear-gradient(#5bc0de, #2f96b4);
+    background-image: -o-linear-gradient(center top, #5BC0DE, #2F96B4);
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    /* градиент для IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#5BC0DE', EndColorStr='#2F96B4', GradientType=0);
+}
+
+/* изменяем оформление кнопки при наведении */
+form .form-submit:hover {
+    border-color: #2C8BA5;
+    box-shadow: none;
+}
+
+/* изменяем оформление кнопки при нажатии */
+form .form-submit:active {
+    background-image: -moz-linear-gradient(#2F96B4, #5BC0DE); /* Firefox */
+    background-image: -webkit-linear-gradient(#2F96B4, #5BC0DE); /* Chrome, Safari */
+    background-image: -ms-linear-gradient(#2F96B4, #5BC0DE); /* IE-10 */
+    background-image: -o-linear-gradient(#2F96B4, #5BC0DE); /* Opera */
+    border-bottom: 1px solid #5BC0DE;
+    /* добавляем внутренние тени */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+    /* градиент для IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#2F96B4', EndColorStr='#5BC0DE', GradientType=0);
+}

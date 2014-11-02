@@ -38,8 +38,9 @@
 	}
 	$cs->registerMetaTag('index,follow', 'robots');
 	?>
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico"/>
-	<link rel="icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon"
+	      href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"/>
+	<link rel="icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
 </head>
 
 <body>

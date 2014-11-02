@@ -39,20 +39,20 @@ $this->breadcrumbs = array(
 		<?php echo $form->errorSummary($model); ?>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'name', array('label' => Yii::t('translate', 'Name'))); ?>
-			<?php echo $form->textField($model, 'name'); ?>
+			<?php echo $form->labelEx($model, 'name', array('label' => Yii::t('translate', 'Name'), 'class' => 'form-label')); ?>
+			<?php echo $form->textField($model, 'name', array('class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'name'); ?>
 		</div>
 
 		<div class="row">
 			<?php echo $form->labelEx($model, 'email'); ?>
-			<?php echo $form->textField($model, 'email'); ?>
+			<?php echo $form->textField($model, 'email', array('class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'email'); ?>
 		</div>
 
 		<div class="row">
 			<?php echo $form->labelEx($model, 'subject', array('label' => Yii::t('translate', 'Subject'))); ?>
-			<?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128)); ?>
+			<?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128, 'class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'subject'); ?>
 		</div>
 
@@ -79,7 +79,7 @@ $this->breadcrumbs = array(
 		<?php endif; ?>
 
 		<div class="row buttons">
-			<?php echo CHtml::submitButton('Submit', array('value' => Yii::t('translate', 'Submit'))); ?>
+			<?php echo CHtml::submitButton('Submit', array('value' => Yii::t('translate', 'Submit'), 'class' => 'form-submit')); ?>
 		</div>
 
 		<?php $this->endWidget(); ?>
