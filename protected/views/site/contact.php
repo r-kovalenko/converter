@@ -45,19 +45,19 @@ $this->breadcrumbs = array(
 		</div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'email'); ?>
+			<?php echo $form->labelEx($model, 'email', array('class' => 'form-label')); ?>
 			<?php echo $form->textField($model, 'email', array('class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'email'); ?>
 		</div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'subject', array('label' => Yii::t('translate', 'Subject'))); ?>
+			<?php echo $form->labelEx($model, 'subject', array('label' => Yii::t('translate', 'Subject'), 'class' => 'form-label')); ?>
 			<?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128, 'class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'subject'); ?>
 		</div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model, 'body', array('label' => Yii::t('translate', 'Body'))); ?>
+			<?php echo $form->labelEx($model, 'body', array('label' => Yii::t('translate', 'Body'), 'class' => 'form-label')); ?>
 			<?php echo $form->textArea($model, 'body', array('rows' => 6, 'cols' => 50)); ?>
 			<?php echo $form->error($model, 'body'); ?>
 		</div>
