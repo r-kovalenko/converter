@@ -9,10 +9,10 @@ $config = array(
 
 		// Database
 		'db' => array(
-			'connectionString' => 'Your connection string to your production server',
+			'connectionString' => 'mysql:host=numberto.mysql.ukraine.com.ua;dbname=numberto_db',
 			'emulatePrepare' => false,
-			'username' => 'admin',
-			'password' => 'password',
+			'username' => 'numberto_db',
+			'password' => 'fHjQYZqv',
 			'charset' => 'utf8',
 		),
 
