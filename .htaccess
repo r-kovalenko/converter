@@ -1,3 +1,5 @@
+AddDefaultCharset utf-8
+
 SetEnvIf Host ^numbertowords\.com\.ll$ PROJECT_SERVER_NAME=DEV
 SetEnvIf Host ^(www\.)?numbertowords\.com$ PROJECT_SERVER_NAME=PROD
 
