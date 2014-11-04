@@ -1,5 +1,5 @@
 <?php
-$yiiPath = dirname(__FILE__) . '/../../../../../home/rkovalenko/yii/framework/yii.php';
+$yiiPath = dirname(__FILE__) . '/../../framework/yii.php';
 $debug = TRUE;
 $trace_level = 3;
 $config = array(

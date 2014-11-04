@@ -48,10 +48,11 @@ class Environment
 		// If not overriden
 		if (!isset($mode)) {
 			// Return mode based on Apache server var
-			if (isset($_SERVER[self::SERVER_VAR]))
+			if (isset($_SERVER[self::SERVER_VAR])) {
 				$mode = $_SERVER[self::SERVER_VAR];
-			else
+			} else {
 				throw new Exception('SetEnv ' . self::SERVER_VAR . '<mode> not defined in web server config.');
+			}
 		}
 
 		// Check if mode is valid
