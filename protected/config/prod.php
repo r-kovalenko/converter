@@ -30,7 +30,7 @@ $config = array(
 				array(
 					'class' => 'CEmailLogRoute',
 					'levels' => 'error, warning',
-					'emails' => 'admin@example.com',
+					'emails' => 'admin@numbertowords.com',
 				),
 			),
 		),

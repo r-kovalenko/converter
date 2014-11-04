@@ -61,7 +61,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params' => array(
 		// this is used in contact page
-		'adminEmail' => 'roman.kovalenko88@gmail.com',
+		'adminEmail' => 'admin@numbertowords.com',
 		'languages' => array('en' => 'English', 'ru' => 'Russian'),
 		'environment' => $this->_mode,
 	),
