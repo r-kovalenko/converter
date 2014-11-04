@@ -1,6 +1,8 @@
+SetEnvIf Host ^numbertowords\.com\.ll$ PROJECT_SERVER_NAME=DEV
+SetEnvIf Host ^(www\.)?numbertowords\.com$ PROJECT_SERVER_NAME=PROD
+
 RewriteEngine on
-AllowOverride SetEnv
-SetEnv PROJECT_SERVER_NAME DEV
+
 # не позволять httpd отдавать файлы, начинающиеся с точки (.htaccess, .svn, .git и прочие)
 RedirectMatch 403 /\..*$
 # если директория или файл существуют, использовать их напрямую
