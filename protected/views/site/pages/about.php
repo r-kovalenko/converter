@@ -24,5 +24,5 @@ $current_time = time();
 	<span><?php echo $date_formatter->format('d', $current_time); ?></span>
 </time>
 <div>
-	Пока только календарик...
+	<?php echo Yii::t('translate', 'Just calendar now...'); ?>
 </div>

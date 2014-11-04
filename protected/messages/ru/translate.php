@@ -18,6 +18,7 @@ return array(
 	'Verification Code' => 'Код для проверки',
 	'Please enter the letters as they are shown in the image above' => 'Введите пожалуйста буквы, как они показаны выше',
 	'Letters are not case-sensitive' => 'Буквы регистро-независимы',
-	'Submit' => 'Отправить'
+	'Submit' => 'Отправить',
+	'Just calendar now...' => 'Пока только календарик'
 
 );
