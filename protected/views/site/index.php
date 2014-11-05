@@ -28,7 +28,8 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 		),
 	)); ?>
 	<div class="row">
-		<?php echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
+		<?php //echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
+		<?php echo CHtml::tag('label', array('class' => 'form-label', 'for' => 'form_input'), Yii::t('translate', 'Number')); ?>
 		<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input')); ?>
 		<?php echo $form->error($model, 'number', array('inputID' => 'form_input')); ?>
 	</div>
