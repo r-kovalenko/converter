@@ -16,7 +16,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 	<?php } ?>
 </div>
 <h1><?php echo Yii::t('translate', 'Welcome to'); ?>
-	<i><?php echo CHtml::encode(Yii::t('translate', Yii::app()->name)); ?></i>
+	<i>"<?php echo CHtml::encode(Yii::t('translate', Yii::app()->name)); ?>"</i>
 </h1>
 <div class="form">
 	<?php $form = $this->beginWidget('CActiveForm', array(
