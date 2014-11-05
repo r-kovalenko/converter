@@ -1,26 +1,29 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this Controller */
+$base_url = Yii::app()->request->getBaseUrl();
+$base_absolute_url = Yii::app()->request->getBaseUrl(true);
+?>
 <!DOCTYPE html>
-<html lang="<?php echo Yii::app()->language; ?>">
+<html lang="<?php echo Yii::app()->getLanguage(); ?>">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="language" content="<?php echo Yii::app()->language; ?>"/>
 
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
+	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/screen.css"
 	      media="screen, projection"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css"
+	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/print.css"
 	      media="print"/>
 	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css"
+	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/ie.css"
 	      media="screen, projection"/>
 	<![endif]-->
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/form.css"/>
 	<?php
 	$cs = Yii::app()->getClientScript();
-	$cs->registerCssFile(Yii::app()->request->baseUrl . '/css/page.css')
+	$cs->registerCssFile($base_url . '/css/page.css')
 	?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -38,8 +41,12 @@
 	$cs->registerMetaTag('index,follow', 'robots');
 	?>
 	<link rel="shortcut icon" type="image/x-icon"
-	      href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"/>
-	<link rel="icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
+	      href="<?php echo $base_url; ?>/images/favicon.ico"/>
+	<link rel="icon" type="image/x-icon" href="<?php echo $base_url; ?>/images/favicon.ico">
+	<link rel="alternate" hreflang="x-default" href="<?php echo $base_absolute_url; ?>/">
+	<link rel="alternate" hreflang="en-us" href="<?php echo $base_absolute_url; ?>/en/">
+	<link rel="alternate" hreflang="ru-ru" href="<?php echo $base_absolute_url; ?>/ru/">
+	<link rel="alternate" hreflang="uk-ua" href="<?php echo $base_absolute_url; ?>/ru/">
 </head>
 
 <body>
@@ -48,7 +55,7 @@
 
 	<div id="header">
 		<div id="logo"><?php
-			echo CHtml::tag('img', array('src' => Yii::app()->request->baseUrl . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img')),
+			echo CHtml::tag('img', array('src' => $base_url . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img')),
 			CHtml::encode(Yii::t('translate', 'Number to string')); ?></div>
 	</div>
 	<!-- header -->

@@ -22,7 +22,7 @@ class Controller extends CController
 	 */
 	public $breadcrumbs = array();
 
-	public $default_language = 'ru';
+	public $default_language = 'en';
 
 	public $seo_description = '';
 	public $seo_keywords = '';
@@ -44,13 +44,13 @@ class Controller extends CController
 			$cookie = new CHttpCookie('language', $_GET['language']);
 			$cookie->expire = time() + (60 * 60 * 24 * 365); // (1 year)
 			Yii::app()->request->cookies['langage'] = $cookie;
-//        } else if (Yii::app()->user->hasState('language')) {
-//            Yii::app()->language = Yii::app()->user->getState('language');
+		} else if (Yii::app()->user->hasState('language')) {
+			Yii::app()->language = Yii::app()->user->getState('language');
 		} else if (isset(Yii::app()->request->cookies['language'])) {
 			Yii::app()->language = Yii::app()->request->cookies['language']->value;
 			$this->redirect(Yii::app()->language);
-		} else {
-			$this->redirect($this->default_language);
+//		} else {
+//			$this->redirect($this->default_language);
 		}
 		$this->_setSeo();
 	}

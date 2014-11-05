@@ -40,11 +40,11 @@ return array(
 			'urlFormat' => 'path',
 			'showScriptName' => false,
 			'rules' => array(
-				'<language:(en|ru)>/' => 'site/index',
-				'<language:(en|ru)>/<action:(contact|login|logout)>/*' => 'site/<action>',
-				'<language:(en|ru)>/<controller:\w+>/<id:\d+>' => '<controller>/view',
-				'<language:(en|ru)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-				'<language:(en|ru)>/<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
+				'<language:(en|ru|ua)>/' => 'site/index',
+				'<language:(en|ru|ua)>/<action:(contact|login|logout)>/*' => 'site/<action>',
+				'<language:(en|ru|ua)>/<controller:\w+>/<id:\d+>' => '<controller>/view',
+				'<language:(en|ru|ua)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+				'<language:(en|ru|ua)>/<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
 			),
 		),
 		'errorHandler' => array(
@@ -62,7 +62,7 @@ return array(
 	'params' => array(
 		// this is used in contact page
 		'adminEmail' => 'admin@numbertowords.com',
-		'languages' => array('en' => 'English', 'ru' => 'Russian'),
+		'languages' => array('en' => 'English', 'ru' => 'Русский', 'ua' => 'Українська'),
 		'environment' => $this->_mode,
 	),
 );
