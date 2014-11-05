@@ -9,7 +9,7 @@ class SiteForm extends CFormModel
 {
 	public $number;
 
-	public $number_max = 9999999;
+	public $number_max = 9999999999;
 
 	public $converted_number = NULL;
 
@@ -29,7 +29,18 @@ class SiteForm extends CFormModel
 		1 => array('миллион', '', 'а', 'ов'),
 		2 => array('миллиард', '', 'а', 'ов')
 	);
-	private $for_thousands = array('одна', 'две');
+	private $for_thousands_ru = array('одна', 'две');
+
+	private $digits_uk = array('один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять');
+	private $tens_uk = array('десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семдесят', 'восемдесят', 'девяносто');
+	private $teens_uk = array("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать");
+	private $hundreds_uk = array('сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот');
+	private $second_words_uk = array(
+		0 => array('тисяч', 'а', 'і', ''),
+		1 => array('мильйон', '', 'а', 'ів'),
+		2 => array('мильярд', '', 'а', 'ів')
+	);
+	private $for_thousands_uk = array('одна', 'две');
 
 
 	/**
@@ -119,19 +130,22 @@ class SiteForm extends CFormModel
 						//присваиваем название без окончания
 						$second_word = $this->second_words_ru[$key - 1][0];
 						$last_digit = $portion[0];
-						switch ($last_digit) {
-							case 1:
-								$second_word .= $this->second_words_ru[$key - 1][1];
-								break;
-							case 2:
-							case 3:
-								$second_word .= $this->second_words_ru[$key - 1][2];
-								break;
-							default:
-								$second_word .= $this->second_words_ru[$key - 1][3];
-						}
-						if ($key == 1 and isset($this->for_thousands[$last_digit - 1])) {
-							$temp[0] = $this->for_thousands[$last_digit - 1];
+						//если это не 'надцать'
+						if (!(isset($portion[1]) and $portion[1] == '1')) {
+							switch ($last_digit) {
+								case 1:
+									$second_word .= $this->second_words_ru[$key - 1][1];
+									break;
+								case 2:
+								case 3:
+									$second_word .= $this->second_words_ru[$key - 1][2];
+									break;
+								default:
+									$second_word .= $this->second_words_ru[$key - 1][3];
+							}
+							if ($key == 1 and isset($this->for_thousands_ru[$last_digit - 1])) {
+								$temp[0] = $this->for_thousands_ru[$last_digit - 1];
+							}
 						}
 						$temp[0] = $temp[0] . ' ' . $second_word;
 					}
@@ -163,8 +177,8 @@ class SiteForm extends CFormModel
 			}
 
 			if ($pos == 1 and $digit == 1) {
-				$result[0] = '';
-				$result[$pos] = $this->teens_ru[$prev - 1];
+				$result[0] = $this->teens_uk[$prev - 1];
+				$result[$pos] = '';
 			}
 
 			if ($pos > 1 and $digit != '0') {
@@ -221,4 +235,94 @@ class SiteForm extends CFormModel
 
 	}
 
+	protected function _doConvertionUk()
+	{
+		$number = $this->number;
+
+		if ($number == 0) {
+			$this->converted_number = "нуль";
+		}
+
+		if (!$this->converted_number) {
+			$result = array();
+
+			$arr_reverse_number = str_split(strrev(strval($number)));
+
+			$portions = array_chunk($arr_reverse_number, 3);
+
+			foreach ($portions as $key => $portion) {
+
+				$temp = $this->convertThreeDigitsUk($portion);
+
+				if (is_array($temp)) {
+					if ($key > 0 and $key <= 3) {
+						//присваиваем название без окончания
+						$second_word = $this->second_words_uk[$key - 1][0];
+						$last_digit = $portion[0];
+						//если это не 'надцать'
+						if (!(isset($portion[1]) and $portion[1] == '1')) {
+							switch ($last_digit) {
+								case 1:
+									$second_word .= $this->second_words_uk[$key - 1][1];
+									break;
+								case 2:
+								case 3:
+									$second_word .= $this->second_words_uk[$key - 1][2];
+									break;
+								default:
+									$second_word .= $this->second_words_uk[$key - 1][3];
+							}
+							if ($key == 1 and isset($this->for_thousands_uk[$last_digit - 1])) {
+								$temp[0] = $this->for_thousands_uk[$last_digit - 1];
+							}
+						}
+						$temp[0] = $temp[0] . ' ' . $second_word;
+					}
+
+					$result = array_merge($result, $temp);
+				}
+
+			}
+
+			$this->converted_number = implode(array_reverse($result), ' ');
+		}
+	}
+
+	public function convertThreeDigitsUk($arr_reverse_number)
+	{
+
+		$result = array();
+
+		$prev = NULL;
+
+		foreach ($arr_reverse_number as $pos => $digit) {
+
+			if ($pos == 0 and $digit != '0') {
+				$result[0] = $this->digits_uk[$digit - 1];
+			}
+
+			if ($pos == 1 and $digit != '0') {
+				$result[$pos] = $this->tens_uk[$digit - 1];
+			}
+
+			if ($pos == 1 and $digit == 1) {
+				$result[0] = $this->teens_uk[$prev - 1];
+				$result[$pos] = '';
+			}
+
+			if ($pos > 1 and $digit != '0') {
+				$result[$pos] = $this->digits_uk[$digit - 1];
+			}
+
+			if ($pos == 2 and $digit != '0') {
+				$result[$pos] = $this->hundreds_uk[$digit - 1];
+			}
+
+			$prev = $digit;
+
+		}
+
+		return $result;
+
+	}
 }
