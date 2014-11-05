@@ -40,11 +40,13 @@ return array(
 			'urlFormat' => 'path',
 			'showScriptName' => false,
 			'rules' => array(
+				'sitemap.xml' => 'sitemap/index',
 				'<language:(en|ru|uk)>/' => 'site/index',
 				'<language:(en|ru|uk)>/<action:(contact|login|logout)>/*' => 'site/<action>',
 				'<language:(en|ru|uk)>/<controller:\w+>/<id:\d+>' => '<controller>/view',
 				'<language:(en|ru|uk)>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
 				'<language:(en|ru|uk)>/<controller:\w+>/<action:\w+>/*' => '<controller>/<action>',
+
 			),
 		),
 		'errorHandler' => array(
@@ -54,6 +56,9 @@ return array(
 		'request' => array(
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
+		),
+		'cache' => array(
+			'class' => 'system.caching.CFileCache',
 		),
 	),
 
