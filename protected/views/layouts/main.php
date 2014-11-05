@@ -88,10 +88,13 @@ $language = Yii::app()->getLanguage();
 	<div id="footer">
 		<?php if ($language == 'uk') { ?>
 			<div>
-				<noindex><a rel="nofollow" href="http://www.ukraine.com.ua/?page=180746" title="Хостинг Україна"
-				            target="_blank"><img
-						src="http://www.ukraine.com.ua/design/ukraine/img/ukraine_1.gif" title="Хостинг Украина"
-						border="0" alt="Hosting Ukraine"/></a></noindex>
+				<noindex>
+					<a rel="nofollow" href="http://www.ukraine.com.ua/?page=180746" title="Хостинг Україна"
+					   target="_blank">
+						<img src="http://www.ukraine.com.ua/design/ukraine/img/ukraine_1.gif" title="Хостинг Украина"
+						     border="0" alt="Hosting Ukraine"/>
+					</a>
+				</noindex>
 			</div>
 		<?php } ?>
 		<div style="display: inline-block">
