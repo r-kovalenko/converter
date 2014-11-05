@@ -1,13 +1,14 @@
 <?php /* @var $this Controller */
 $base_url = Yii::app()->request->getBaseUrl();
 $base_absolute_url = Yii::app()->request->getBaseUrl(true);
+$language = Yii::app()->getLanguage();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo Yii::app()->getLanguage(); ?>">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="language" content="<?php echo Yii::app()->language; ?>"/>
+	<meta name="language" content="<?php echo $language; ?>"/>
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/screen.css"
@@ -85,8 +86,17 @@ $base_absolute_url = Yii::app()->request->getBaseUrl(true);
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?>.<br/>
-		All Rights Reserved.<br/>
+		<?php if ($language == 'uk') { ?>
+			<div>
+				<a href="http://www.ukraine.com.ua/?page=180746" title="Хостинг Україна" target="_blank"><img
+						src="http://www.ukraine.com.ua/design/ukraine/img/ukraine_1.gif" title="Хостинг Украина"
+						border="0" alt="Hosting Ukraine"/></a>
+			</div>
+		<?php } ?>
+		<div style="display: inline-block">
+			Copyright &copy; <?php echo date('Y'); ?>.<br/>
+			<?php echo Yii::t('translate', 'All Rights Reserved'); ?>.<br/>
+		</div>
 	</div>
 	<!-- footer -->
 

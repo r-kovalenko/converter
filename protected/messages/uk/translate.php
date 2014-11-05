@@ -19,6 +19,7 @@ return array(
 	'Please enter the letters as they are shown in the image above' => 'Введіть будь ласка літери, як вони показані вище',
 	'Letters are not case-sensitive' => 'Літери регістро-незалежні',
 	'Submit' => 'Відправити',
-	'Just calendar now...' => 'Поки що тільки календарик'
+	'Just calendar now...' => 'Поки що тільки календарик',
+	'All Rights Reserved' => 'Усі права захищені'
 
 );
