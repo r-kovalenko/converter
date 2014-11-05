@@ -46,7 +46,7 @@ $base_absolute_url = Yii::app()->request->getBaseUrl(true);
 	<link rel="alternate" hreflang="x-default" href="<?php echo $base_absolute_url; ?>/">
 	<link rel="alternate" hreflang="en-us" href="<?php echo $base_absolute_url; ?>/en/">
 	<link rel="alternate" hreflang="ru-ru" href="<?php echo $base_absolute_url; ?>/ru/">
-	<link rel="alternate" hreflang="uk-ua" href="<?php echo $base_absolute_url; ?>/ru/">
+	<link rel="alternate" hreflang="uk-ua" href="<?php echo $base_absolute_url; ?>/uk/">
 </head>
 
 <body>
