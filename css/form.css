@@ -145,7 +145,7 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage {
 }
 
 form .form-input, form textarea {
-    font: 24px Trebuchet MS, Arial, Helvetica, Sans-Serif;
+    font: 30px Trebuchet MS, Arial, Helvetica, Sans-Serif;
     color: #6B6B6B;
     /* отключаем бордюры у инпутов и текстового поля */
     border: none;
@@ -173,7 +173,7 @@ form .form-input:focus {
 form textarea {
     /* устанавливаем ширину текстового поля */
     height: 100px;
-    width: 677px;
+    width: 585px;
     overflow: auto;
 }
 
@@ -187,14 +187,15 @@ form .form-submit {
 
 /* оформляем кнопку отправки */
 form .form-submit {
+    font-size: large;
     /* устанавливаем необходимую ширину кнопки */
-    width: 120px;
-    line-height: 18px;
+    width: 140px;
+    line-height: 30px;
     /* добавляем внешние тени */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     border: solid 1px #2f96b4;
     /* закругляем углы кнопки */
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: #49AFCD;
     /* градиентная заливка для современных браузеров */
     background-image: -moz-linear-gradient(center top, #5BC0DE, #2F96B4);

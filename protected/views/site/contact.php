@@ -52,7 +52,7 @@ $this->breadcrumbs = array(
 
 		<div class="row">
 			<?php echo $form->labelEx($model, 'subject', array('label' => Yii::t('translate', 'Subject'), 'class' => 'form-label')); ?>
-			<?php echo $form->textField($model, 'subject', array('size' => 60, 'maxlength' => 128, 'class' => 'form-input')); ?>
+			<?php echo $form->textField($model, 'subject', array('size' => 40, 'maxlength' => 128, 'class' => 'form-input')); ?>
 			<?php echo $form->error($model, 'subject'); ?>
 		</div>
 
