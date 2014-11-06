@@ -55,30 +55,30 @@ class Controller extends CController
 		$this->_setSeo();
 	}
 
-	protected function _setSeo()
+	protected function _setSeo($cache_valid_time = 3600)
 	{
 		$seo = new Seo();
 		$model_seo = $seo::model();
 		$language = Yii::app()->getLanguage();
 
-		$records = $model_seo->findAll('name like :myParams', array(':myParams' => '%_' . $language));
-
-		foreach ($records as $record) {
-			if (preg_match("/^([a-z]+)/", $record->name, $matches)) {
-				$name = 'seo_' . $matches[0];
-				$this->$name = $record->text;
+		if (!$this->seo_description = Yii::app()->cache->get('description_' . $language)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
+				$this->seo_description = $record->text;
+				Yii::app()->cache->set('description_' . $language, $record->text, $cache_valid_time);
 			}
 		}
-
-//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
-//			$this->seo_description = $record->text;
-//		}
-//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
-//			$this->seo_keywords = $record->text;
-//		}
-//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
-//			$this->seo_footer = $record->text;
-//		}
+		if (!$this->seo_keywords = Yii::app()->cache->get('keywords_' . $language)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
+				$this->seo_keywords = $record->text;
+				Yii::app()->cache->set('keywords_' . $language, $record->text, $cache_valid_time);
+			}
+		}
+		if (!$this->seo_footer = Yii::app()->cache->get('footer_' . $language)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
+				$this->seo_footer = $record->text;
+				Yii::app()->cache->set('footer_' . $language, $record->text, $cache_valid_time);
+			}
+		}
 	}
 
 	public function createMultilanguageReturnUrl($lang = 'en')
