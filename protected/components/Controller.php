@@ -60,15 +60,25 @@ class Controller extends CController
 		$seo = new Seo();
 		$model_seo = $seo::model();
 		$language = Yii::app()->getLanguage();
-		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
-			$this->seo_description = $record->text;
+
+		$records = $model_seo->findAll('name like :myParams', array(':myParams' => '%_' . $language));
+
+		foreach ($records as $record) {
+			if (preg_match("/^([a-z]+)/", $record->name, $matches)) {
+				$name = 'seo_' . $matches[0];
+				$this->$name = $record->text;
+			}
 		}
-		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
-			$this->seo_keywords = $record->text;
-		}
-		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
-			$this->seo_footer = $record->text;
-		}
+
+//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
+//			$this->seo_description = $record->text;
+//		}
+//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
+//			$this->seo_keywords = $record->text;
+//		}
+//		if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
+//			$this->seo_footer = $record->text;
+//		}
 	}
 
 	public function createMultilanguageReturnUrl($lang = 'en')
