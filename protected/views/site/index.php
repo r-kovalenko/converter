@@ -26,16 +26,18 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 			'validateOnSubmit' => true,
 		),
 	)); ?>
+	<div style="float: right;padding-top: 2em">
+		<!--FB -->
+		<div class="fb-like" data-href="<?php echo Yii::app()->request->getBaseUrl(true); ?>"
+		     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+		<!--VK -->
+		<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+	</div>
 	<div class="row">
 		<?php //echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
 		<?php echo CHtml::tag('label', array('class' => 'form-label', 'for' => 'form_input'), Yii::t('translate', 'Number')); ?>
 		<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input')); ?>
 		<?php echo $form->error($model, 'number', array('inputID' => 'form_input')); ?>
-		<!--FB -->
-		<div class="fb-like" style="float: right;" data-href="<?php echo Yii::app()->request->getBaseUrl(true); ?>"
-		     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-		<!--VK -->
-		<div id="vk_like" style="float: right;"></div>
 	</div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('OK', array('class' => 'form-submit')); ?>
@@ -48,4 +50,4 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 	</p>
 </div>
 <div id="seo_footer"></div>
-<script type="text/javascript">VK.Widgets.Like("vk_like", {type: "mini", height: 24});</script>
+<script type="text/javascript">VK.Widgets.Like("vk_like", {type: "button", height: 24});</script>
