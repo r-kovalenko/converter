@@ -29,7 +29,7 @@ class Controller extends CController
 	public $seo_footer = '';
 
 	public $vk_id = '4623138';
-	public $fb_id = '488558064597285';
+	public $fb_id = '354027991426794';
 
 	public function __construct($id, $module = null)
 	{
