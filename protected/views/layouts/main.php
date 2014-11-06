@@ -32,17 +32,17 @@ $language = Yii::app()->getLanguage();
 	if (!empty($this->seo_description)) {
 		$cs->registerMetaTag(CHtml::encode($this->seo_description), 'description');
 	} else {
-
 	}
 	if (!empty($this->seo_keywords)) {
 		$cs->registerMetaTag(CHtml::encode($this->seo_keywords), 'keywords');
 	} else {
-
 	}
 	$cs->registerMetaTag('index,follow', 'robots');
+	$cs->registerMetaTag(CHtml::encode($this->vk_id), null, null, array('property' => 'vk:app_id'));
 	?>
-	<link rel="shortcut icon" type="image/x-icon"
-	      href="<?php echo $base_url; ?>/images/favicon.ico"/>
+	<!-- VK -->
+	<script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $base_url; ?>/images/favicon.ico"/>
 	<link rel="icon" type="image/x-icon" href="<?php echo $base_url; ?>/images/favicon.ico">
 	<link rel="alternate" hreflang="x-default" href="<?php echo $base_absolute_url; ?>/">
 	<link rel="alternate" hreflang="en-us" href="<?php echo $base_absolute_url; ?>/en/">
@@ -53,11 +53,37 @@ $language = Yii::app()->getLanguage();
 <body>
 
 <div class="container" id="page">
-
+	<div id="fb-root"></div>
+	<?php
+	switch ($language) {
+		case 'ru':
+			$fb_locale = 'ru_RU';
+			break;
+		case 'en':
+			$fb_locale = 'en_US';
+			break;
+		case 'uk':
+			$fb_locale = 'uk_UA';
+			break;
+		default:
+			$fb_locale = 'en_US';
+	}
+	?>
+	<script>
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/<?php echo $fb_locale; ?>/sdk.js#xfbml=1&appId=<?php echo $this->fb_id; ?>&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div id="header">
 		<div id="logo"><?php
 			echo CHtml::tag('img', array('src' => $base_url . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img')),
-			CHtml::encode(Yii::t('translate', 'Number to string')); ?></div>
+			CHtml::encode(Yii::t('translate', 'Number to string')); ?>
+		</div>
 	</div>
 	<!-- header -->
 	<div id="language-selector" style="float:right; margin:5px;">
