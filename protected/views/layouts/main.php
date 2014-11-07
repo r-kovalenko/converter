@@ -41,7 +41,7 @@ $language = Yii::app()->getLanguage();
 	$cs->registerMetaTag(CHtml::encode($this->vk_id), null, null, array('property' => 'vk:app_id'));
 	//	for Facebook
 	$cs->registerMetaTag(CHtml::encode($this->pageTitle), null, null, array('property' => 'og:title'));
-	$cs->registerMetaTag(CHtml::encode($base_absolute_url . '/images/large-logo.jpg'), null, null, array('property' => 'og:image'));
+	$cs->registerMetaTag(CHtml::encode($base_absolute_url . '/images/large-logo.png'), null, null, array('property' => 'og:image'));
 	$cs->registerMetaTag(CHtml::encode($base_absolute_url), null, null, array('property' => 'og:url'));
 	if (!empty($this->seo_description)) {
 		$cs->registerMetaTag(CHtml::encode($this->seo_description), null, null, array('property' => 'og:description'));
