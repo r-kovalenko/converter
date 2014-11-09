@@ -14,13 +14,13 @@ class SitemapController extends Controller
 			$sitemap->addUrl('/', DSitemap::DAILY);
 
 			foreach (Yii::app()->params->languages as $lang_key => $value) {
-				$sitemap->addUrl('/' . $lang_key . '/', DSitemap::DAILY);
-				$sitemap->addUrl('/' . $lang_key . '/site/page/view/about', DSitemap::DAILY);
-				$sitemap->addUrl('/' . $lang_key . '/contact', DSitemap::WEEKLY);
+				$sitemap->addUrl('/' . $lang_key . '/', DSitemap::DAILY, 1);
+				$sitemap->addUrl('/' . $lang_key . '/site/page/view/about', DSitemap::DAILY, 0.7);
+				$sitemap->addUrl('/' . $lang_key . '/contact', DSitemap::WEEKLY, 0.3);
 			}
 
 			$xml = $sitemap->render();
-			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY);
+			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY, 1);
 		}
 
 		header("Content-type: text/xml");
