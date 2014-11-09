@@ -40,6 +40,13 @@ class SiteController extends Controller
 			}
 			Yii::app()->end();
 		}
+		if (Yii::app()->request->isAjaxRequest) {
+			$data = array();
+			$data['converted_number'] = $model->converted_number;
+			$this->renderPartial('_number', $data);
+			// Завершаем приложение
+			Yii::app()->end();
+		}
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index', array('model' => $model));

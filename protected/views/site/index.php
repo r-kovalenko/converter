@@ -1,7 +1,7 @@
 <?php
 /* @var $this SiteController */
 $this->pageTitle = Yii::t('translate', Yii::app()->name);
-Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js')
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 ?>
 <div id="text-description-page" class="seo-description">
 	<?php if (!empty($this->seo_footer)) { ?>
@@ -21,7 +21,7 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'site-form',
 		'enableClientValidation' => true,
-		'enableAjaxValidation' => true,
+		'enableAjaxValidation' => false,
 		'clientOptions' => array(
 			'validateOnSubmit' => true,
 		),
@@ -39,12 +39,16 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 		<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input')); ?>
 		<?php echo $form->error($model, 'number', array('inputID' => 'form_input')); ?>
 	</div>
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('OK', array('class' => 'form-submit')); ?>
+		<!--		--><?php //echo CHtml::submitButton('OK', array('class' => 'form-submit')); ?>
+		<?php echo CHtml::ajaxSubmitButton('OK', '', array('update' => '#converted_number'),
+			array('class' => 'form-submit')
+		); ?>
 	</div>
 	<?php $this->endWidget(); ?>
 </div>
-<div class="converted-text">
+<div class="converted-text" id="converted_number">
 	<p>
 		<?php if ($model->converted_number) echo ucfirst($model->converted_number); ?>
 	</p>

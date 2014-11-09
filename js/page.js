@@ -61,6 +61,4 @@ domReady(function () {
 	var seo_header = document.getElementById('text-description-page'),
 		seo_footer = document.getElementById('seo_footer');
 	seo_footer.appendChild(seo_header);
-
-	console.log(1);
 });
