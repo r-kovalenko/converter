@@ -17,7 +17,7 @@ class SiteForm extends CFormModel
 	private $tens_en = array('ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety');
 	private $teens_en = array("eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen");
 	private $second_words_en = array(
-		0 => 'hundred', 1 => 'thousand', 2 => 'million', 3 => 'billion'
+		0 => 'hundred', 1 => 'thousand', 2 => 'million', 3 => 'billion', 4 => 'trillion', 5 => 'quadrillion', 6 => 'quintillion', 7 => 'sextillion'
 	);
 
 	private $digits_ru = array('один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять');
@@ -94,7 +94,12 @@ class SiteForm extends CFormModel
 
 				if (is_array($temp)) {
 					if ($key > 0 and $key <= 3) {
-						$temp[0] = $temp[0] . ' ' . $this->second_words_en[$key];
+						$temp[0] .= ' ' . $this->second_words_en[$key];
+					}
+					//replece with hyphen
+					if (isset($portion[1]) and $portion[1] > 1) {
+						$temp[0] = $temp[1] . '-' . $temp[0];
+						unset($temp[1]);
 					}
 
 					$result = array_merge($result, $temp);
