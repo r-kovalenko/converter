@@ -20,7 +20,7 @@ class SitemapController extends Controller
 			}
 
 			$xml = $sitemap->render();
-			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY, 1);
+			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY);
 		}
 
 		header("Content-type: text/xml");
