@@ -32,6 +32,20 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 		     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
 		<!--VK -->
 		<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+		<div id="twlike" style="float: right;padding-top: 0.5em">
+			<a href="https://twitter.com/share" class="twitter-share-button"
+			   data-url="<?php echo Yii::app()->request->getBaseUrl(true); ?>" data-via="romakovalenkoua"
+			   data-hashtags="numbertowords">Tweet</a>
+			<script>!function (d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+					if (!d.getElementById(id)) {
+						js = d.createElement(s);
+						js.id = id;
+						js.src = p + '://platform.twitter.com/widgets.js';
+						fjs.parentNode.insertBefore(js, fjs);
+					}
+				}(document, 'script', 'twitter-wjs');</script>
+		</div>
 	</div>
 	<div class="row">
 		<?php //echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
