@@ -68,6 +68,8 @@ return array(
 		// this is used in contact page
 		'adminEmail' => 'admin@numbertowords.com',
 		'languages' => array('en' => 'English', 'ru' => 'Русский', 'uk' => 'Українська'),
+		'ga_id' => 'UA-56605927-1',
+		'gtm_id' => 'GTM-MKKPTS',
 		'environment' => $this->_mode,
 	),
 );

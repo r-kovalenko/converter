@@ -58,7 +58,7 @@ $language = Yii::app()->getLanguage();
 </head>
 
 <body>
-
+<?php include_once("analyticstracking.php") ?>
 <div class="container" id="page">
 	<div id="fb-root"></div>
 	<?php
