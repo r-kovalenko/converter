@@ -15,7 +15,7 @@
 </script>
 <!-- Google Tag Manager -->
 <noscript>
-	<iframe src="//www.googletagmanager.com/ns.html?id=GTM-MKKPTS" height="0" width="0"
+	<iframe src="//www.googletagmanager.com/ns.html?id=<?php echo Yii::app()->params->gtm_id; ?>" height="0" width="0"
 	        style="display:none;visibility:hidden"></iframe>
 </noscript>
 <script>(function (w, d, s, l, i) {
