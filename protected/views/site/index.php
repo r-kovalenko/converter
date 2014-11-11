@@ -1,6 +1,7 @@
 <?php
 /* @var $this SiteController */
 $this->pageTitle = Yii::t('translate', Yii::app()->name);
+Yii::app()->getClientScript()->registerMetaTag('index,follow', 'robots');
 Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 ?>
 <div id="text-description-page" class="seo-description">

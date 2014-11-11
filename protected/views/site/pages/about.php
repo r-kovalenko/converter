@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 
 $this->pageTitle = Yii::app()->name . ' - ' . Yii::t('translate', 'About');
-
+Yii::app()->getClientScript()->registerMetaTag('index,follow', 'robots');
 /* Подключаем css для календарика */
 Yii::app()->getClientScript()->registerCssFile(Yii::app()->request->baseUrl . '/css/calendar.css');
 

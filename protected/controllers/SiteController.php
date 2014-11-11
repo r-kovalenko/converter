@@ -86,7 +86,7 @@ class SiteController extends Controller
 				$this->refresh();
 			}
 		}
-		$this->render('contact', array('model' => $model));
+		$this->render('contact', array('model' => $model, 'is_contact' => true));
 	}
 
 	/**

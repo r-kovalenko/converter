@@ -15,8 +15,8 @@ class SitemapController extends Controller
 
 			foreach (Yii::app()->params->languages as $lang_key => $value) {
 				$sitemap->addUrl('/' . $lang_key . '/', DSitemap::DAILY, 1);
-				$sitemap->addUrl('/' . $lang_key . '/site/page/view/about', DSitemap::DAILY, 0.7);
-				$sitemap->addUrl('/' . $lang_key . '/contact', DSitemap::WEEKLY, 0.3);
+				$sitemap->addUrl('/' . $lang_key . '/site/page/view/about', DSitemap::WEEKLY, 0.5);
+//				$sitemap->addUrl('/' . $lang_key . '/contact', DSitemap::WEEKLY, 0.3);
 			}
 
 			$xml = $sitemap->render();

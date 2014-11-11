@@ -37,7 +37,6 @@ $language = Yii::app()->getLanguage();
 		$cs->registerMetaTag(CHtml::encode($this->seo_keywords), 'keywords');
 	} else {
 	}
-	$cs->registerMetaTag('index,follow', 'robots');
 	$cs->registerMetaTag(CHtml::encode($this->vk_id), null, null, array('property' => 'vk:app_id'));
 	//	for Facebook
 	$cs->registerMetaTag(CHtml::encode($this->pageTitle), null, null, array('property' => 'og:title'));
