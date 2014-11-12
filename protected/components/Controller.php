@@ -49,9 +49,10 @@ class Controller extends CController
 			Yii::app()->request->cookies['langage'] = $cookie;
 		} else if (Yii::app()->user->hasState('language')) {
 			Yii::app()->language = Yii::app()->user->getState('language');
+//			$this->redirect(Yii::app()->language);
 		} else if (isset(Yii::app()->request->cookies['language'])) {
 			Yii::app()->language = Yii::app()->request->cookies['language']->value;
-			$this->redirect(Yii::app()->language);
+//			$this->redirect(Yii::app()->language);
 //		} else {
 //			$this->redirect($this->default_language);
 		}

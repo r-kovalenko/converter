@@ -7,21 +7,32 @@ class SitemapController extends Controller
 
 	public function actionIndex()
 	{
-		if (!$xml = Yii::app()->cache->get('sitemap')) {
+//		if (!$xml = Yii::app()->cache->get('sitemap')) {
 
 			$sitemap = new DSitemap();
 
 			$sitemap->addUrl('/', DSitemap::DAILY);
 
-			foreach (Yii::app()->params->languages as $lang_key => $value) {
-				$sitemap->addUrl('/' . $lang_key . '/', DSitemap::DAILY, 1);
-				$sitemap->addUrl('/' . $lang_key . '/site/page/view/about', DSitemap::WEEKLY, 0.5);
-//				$sitemap->addUrl('/' . $lang_key . '/contact', DSitemap::WEEKLY, 0.3);
+		$languages = Yii::app()->params->languages;
+
+		$host = Yii::app()->request->hostInfo;
+		foreach ($languages as $key => $lang) {
+			$lang_map[] = array(
+				'hreflang' => $key,
+				'href' => $host . '/' . $key
+			);
+		}
+
+		foreach ($languages as $lang_key => $value) {
+
+			$sitemap->addUrlLang('/', $lang_map, $lang_key, DSitemap::DAILY, 1);
+			$sitemap->addUrlLang('/site/page/view/about', $lang_map, $lang_key, DSitemap::WEEKLY, 0.5);
+			$sitemap->addUrlLang('/contact', $lang_map, $lang_key, DSitemap::NEVER, 0.3);
 			}
 
 			$xml = $sitemap->render();
-			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY);
-		}
+//			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY);
+//		}
 
 		header("Content-type: text/xml");
 		echo $xml;
