@@ -3,7 +3,7 @@
 /* @var $model ContactForm */
 /* @var $form CActiveForm */
 $this->pageTitle = Yii::app()->name . ' - ' . Yii::t('translate', 'Contact Us');
-Yii::app()->getClientScript()->registerMetaTag('noindex,nofollow', 'robots');
+Yii::app()->getClientScript()->registerMetaTag('index,follow', 'robots');
 $this->breadcrumbs = array(
 	Yii::t('translate', 'Contact'),
 );
