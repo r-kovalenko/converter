@@ -26,8 +26,8 @@ class SitemapgController extends Controller
 
 			foreach ($languages as $lang_key => $value) {
 				$sitemap->addUrlLang('/', $lang_map, $lang_key, DSitemap::DAILY, 1);
-				$sitemap->addUrlLang('/site/page/view/about', $lang_map, $lang_key, DSitemap::WEEKLY, 0.5);
-				$sitemap->addUrlLang('/contact', $lang_map, $lang_key, DSitemap::NEVER, 0.3);
+				$sitemap->addUrlLang('/site/page/view/about/', $lang_map, $lang_key, DSitemap::WEEKLY, 0.5);
+				$sitemap->addUrlLang('/contact/', $lang_map, $lang_key, DSitemap::NEVER, 0.3);
 			}
 
 			$xml = $sitemap->render();
