@@ -1,3 +1,7 @@
 User-Agent: *
 Allow: /
 Sitemap: http://numbertowords.com/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Sitemap: http://numbertowords.com/sitemap_google.xml

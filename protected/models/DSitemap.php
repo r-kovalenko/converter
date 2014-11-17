@@ -81,15 +81,28 @@ class DSitemap
 		}
 	}
 
+	function callbackReplaceNS($buffer)
+	{
+		// заменить все яблоки апельсинами
+		return (str_replace("яблоки", "апельсины", $buffer));
+	}
+
 	/**
 	 * @return string XML code
 	 */
 	public function render()
 	{
-		$dom = new DOMDocument('1.0', 'utf-8');
-		$nsUrl = 'http://www.w3.org/2000/xhtml';
-		$urlset = $dom->createElementNS('http://www.sitemaps.org/schemas/sitemap/0.9', 'urlset');
-		$urlset->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xhtml', $nsUrl);
+
+		$dom = new DOMDocument('1.0', 'UTF-8');
+		$urlset = $dom->appendChild($dom->createElement('urlset'));
+		$urlset->appendChild(
+			$dom->createAttribute('xmlns'))->appendChild(
+			$dom->createTextNode('http://www.sitemaps.org/schemas/sitemap/0.9')
+		);
+		$urlset->appendChild(
+			$dom->createAttribute('xmlns:xhtml'))->appendChild(
+			$dom->createTextNode('http://www.w3.org/1999/xhtml/')
+		);
 		foreach ($this->items as $item) {
 			$url = $dom->createElement('url');
 
@@ -113,9 +126,11 @@ class DSitemap
 			$urlset->appendChild($url);
 
 		}
-		$dom->appendChild($urlset);
+
+//		ob_start(array(__CLASS__, 'callbackReplaceNS'));
 
 		return $dom->saveXML();
+
 	}
 
 	protected function dateToW3C($date)
