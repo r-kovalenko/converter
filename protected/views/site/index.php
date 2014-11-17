@@ -3,6 +3,9 @@
 $this->pageTitle = Yii::t('translate', Yii::app()->name);
 Yii::app()->getClientScript()->registerMetaTag('index,follow', 'robots');
 Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
+Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/keyboard.js');
+Yii::app()->getClientScript()->registerCssFile(Yii::app()->request->baseUrl . '/css/keyboard.css');
+Yii::app()->getClientScript()->registerCssFile(Yii::app()->request->baseUrl . '/css/jquery-ui.css');
 ?>
 <div id="text-description-page" class="seo-description">
 	<?php if (!empty($this->seo_footer)) { ?>
@@ -48,13 +51,59 @@ Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl .
 				}(document, 'script', 'twitter-wjs');</script>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" id="wrap">
 		<?php //echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
 		<?php echo CHtml::tag('label', array('class' => 'form-label', 'for' => 'form_input'), Yii::t('translate', 'Number')); ?>
-		<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input')); ?>
+		<div>
+			<?php echo $form->textField($model, 'number', array('id' => 'form_input', 'class' => 'form-input ppfix post link')); ?>
+			<span class="postfix link">  </span>
+		</div>
 		<?php echo $form->error($model, 'number', array('inputID' => 'form_input')); ?>
 	</div>
+	<script>
+		$(function () {
+			$.keyboard.layouts.num = {
+				'default': [
+					'{clear} {b}',
+					'7 8 9 ',
+					'4 5 6 ',
+					'1 2 3 ',
+					'0 {a} {c}'
+				]
+			}
+			$('#form_input').keyboard({
+				layout: 'num',
+				usePreview: false,
+				autoAccept: false,
+				acceptValid: true,
+				tabNavigation: true,
+				visible: function (e, keyboard, el) {
+					el.select();
+				},
+				change: function (e, keyboard, el) {
+					// check valid again, because checkValid() is called
+					// ~100ms after the change event =(
+					keyboard.checkValid();
+					if (keyboard.isValid && keyboard.$el.hasClass('last')) {
+						setTimeout(function () {
+							keyboard.close(true); // accept the content
+						}, 100);
+					} else if (keyboard.isValid) {
+						// set time out needed to finish up change event and run checkCombos &
+						// checkValid after a set time (see issue #102)
+						setTimeout(function () {
+							if (keyboard.isValid) {
+								keyboard.switchInput(true, true);
+							}
+						}, 100);
+						return false;
+					}
+				}
 
+			});
+
+		});
+	</script>
 	<div class="row buttons">
 		<!--		--><?php //echo CHtml::submitButton('OK', array('class' => 'form-submit')); ?>
 		<?php echo CHtml::ajaxSubmitButton('OK', '', array('update' => '#converted_number'),

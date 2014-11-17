@@ -1,0 +1,360 @@
+/* keyboard - jQuery UI Widget */
+.ui-keyboard {
+    padding: .3em;
+    z-index: 16000;
+}
+
+.ui-keyboard-has-focus {
+    z-index: 16001;
+}
+
+.ui-keyboard div {
+    font-size: 1.1em;
+}
+
+.ui-keyboard-button {
+    min-height: 2em;
+    width: 2em;
+    min-width: 1em;
+    margin: .1em;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 2em;
+    -moz-user-focus: ignore;
+}
+
+.ui-keyboard-button span {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.ui-keyboard-button-endrow {
+    clear: left;
+}
+
+.ui-keyboard-widekey {
+    min-width: 4em;
+    width: auto;
+}
+
+.ui-keyboard-space {
+    width: 15em;
+}
+
+.ui-keyboard-space span, .ui-keyboard-empty span {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+/* see http://nicolasgallagher.com/another-css-image-replacement-technique/ */
+.ui-keyboard-preview-wrapper {
+    text-align: center;
+}
+
+.ui-keyboard-preview {
+    text-align: left;
+    margin: 0 0 3px 0;
+    display: inline;
+    width: 99%;
+}
+
+/* width is calculated in IE, since 99% = 99% full browser width =( */
+.ui-keyboard-keyset {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.ui-keyboard-input {
+    text-align: left;
+}
+
+.ui-keyboard-input-current {
+    -moz-box-shadow: 1px 1px 10px #5e9ed6;
+    -webkit-box-shadow: 1px 1px 10px #5e9ed6;
+    box-shadow: 1px 1px 10px #5e9ed6;
+}
+
+.ui-keyboard-placeholder {
+    color: #888;
+}
+
+.ui-keyboard-nokeyboard {
+    color: #888;
+    border-color: #888;
+}
+
+/* disabled or readonly inputs, or use input[disabled='disabled'] { color: #f00; } */
+.ui-keyboard-button.disabled {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+/* used by the acceptValid option to make the accept button appear faded */
+.ui-keyboard-spacer {
+    display: inline-block;
+    width: 1px;
+    height: 0;
+}
+
+/* combo key styling - toggles diacritics on/off */
+.ui-keyboard-button.ui-keyboard-combo.ui-state-default {
+    border-color: #ffaf0f;
+}
+
+/* (in)valid inputs */
+button.ui-keyboard-accept.ui-keyboard-valid-input {
+    border-color: #0c0;
+    background: #080;
+    color: #fff;
+}
+
+button.ui-keyboard-accept.ui-keyboard-valid-input:hover {
+    background: #0a0;
+}
+
+button.ui-keyboard-accept.ui-keyboard-invalid-input {
+    border-color: #c00;
+    background: #800;
+    color: #fff;
+}
+
+button.ui-keyboard-accept.ui-keyboard-invalid-input:hover {
+    background: #a00;
+}
+
+/*** jQuery Mobile definitions ***/
+/* jQuery Mobile styles - need wider buttons because of font size and text-overflow:ellipsis */
+.ui-body .ui-keyboard-button {
+    width: 3em;
+    display: inline-block;
+}
+
+.ui-body .ui-keyboard-widekey {
+    width: 5.5em;
+}
+
+.ui-body .ui-keyboard-space {
+    width: 15em;
+}
+
+.ui-body .ui-keyboard-space span {
+    visibility: hidden;
+}
+
+/* hides the ellipsis */
+.ui-body .ui-keyboard-keyset {
+    line-height: 0.5em;
+}
+
+.ui-body input.ui-input-text, .ui-body textarea.ui-input-text {
+    width: 95%;
+}
+
+/* over-ride padding set by mobile ui theme - needed because the mobile script wraps button text with several more spans */
+.ui-body .ui-btn-inner {
+    height: 2em;
+    padding: 0.2em 0;
+    margin: 0;
+}
+
+.ui-body .ui-btn {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* mobile default size is 13px */
+
+/* Media Queries (optimized for jQuery UI themes; may be slightly off in jQuery Mobile themes) */
+/* 240 x 320 (small phone)  */
+@media all and (max-width: 319px) {
+    .ui-keyboard div {
+        font-size: 9px;
+    }
+
+    .ui-keyboard .ui-keyboard-input {
+        font-size: 12px;
+    }
+
+    /* I don't own an iPhone so I have no idea how small this really is... is it even clickable with your finger? */
+    .ui-body .ui-btn {
+        margin: 0;
+        font-size: 9px;
+    }
+
+    .ui-body .ui-keyboard-button {
+        width: 1.8em;
+        height: 2.5em;
+    }
+
+    .ui-body .ui-keyboard-widekey {
+        width: 4em;
+    }
+
+    .ui-body .ui-keyboard-space {
+        width: 8em;
+    }
+
+    .ui-body .ui-btn-inner {
+        height: 2.5em;
+        padding: 0.3em 0;
+    }
+}
+
+/* 320 x 480 (iPhone)  */
+@media all and (min-width: 320px) and (max-width: 479px) {
+    .ui-keyboard div {
+        font-size: 9px;
+    }
+
+    .ui-keyboard .ui-keyboard-input {
+        font-size: 14px;
+    }
+
+    /* I don't own an iPhone so I have no idea how small this really is... is it even clickable with your finger? */
+    .ui-body .ui-btn {
+        margin: 0;
+        font-size: 11px;
+    }
+
+    .ui-body .ui-keyboard-button {
+        width: 1.8em;
+        height: 3em;
+    }
+
+    .ui-body .ui-keyboard-widekey {
+        width: 4.5em;
+    }
+
+    .ui-body .ui-keyboard-space {
+        width: 10em;
+    }
+
+    .ui-body .ui-btn-inner {
+        height: 3em;
+        padding: 0.7em 0;
+    }
+}
+
+/* 480 x 640 (small tablet) */
+@media all and (min-width: 480px) and (max-width: 767px) {
+    .ui-keyboard div {
+        font-size: 13px;
+    }
+
+    .ui-keyboard .ui-keyboard-input {
+        font-size: 14px;
+    }
+
+    .ui-body .ui-btn {
+        margin: 0;
+        font-size: 10px;
+    }
+
+    .ui-body .ui-keyboard-button {
+        height: 2.5em;
+    }
+
+    .ui-body .ui-btn-inner {
+        height: 2.5em;
+        padding: 0.5em 0;
+    }
+}
+
+/* Postfix and Prefix styling start here */
+.ppfix {
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-family: Calibri;
+    font-size: 13px;
+    color: #343434;
+    min-width: 150px;
+    height: 20px;
+    background: #fbfbfb;
+    border: 1px solid #cccdcf;
+    padding: 8px 10px;
+    box-shadow: inset 0 2px 3px #e8e8e8;
+}
+
+.ppfix:focus {
+    outline: none;
+}
+
+.pre {
+    margin: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+}
+
+.prefix {
+    vertical-align: top;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 8px 10px;
+    background: #f2f2f2;
+    border: 1px solid #cccdcf;
+    border-right: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+}
+
+.post {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-bottomleft: 2px;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+}
+
+.postfix {
+    vertical-align: top;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 8px 10px;
+    background: #f2f2f2;
+    border: 1px solid #cccdcf;
+    border-left: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+}
+
+.prefix,
+.postfix {
+    font-family: FontAwesome;
+    line-height: 1.5em;
+    font-size: 16px;
+    color: #737373;
+}
+
+.prefix.orange,
+.postfix.orange {
+    background: #ffb700;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmYjcwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjhjMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #ffb700 0%, #ff8c00 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffb700), color-stop(100%, #ff8c00));
+    background: -webkit-linear-gradient(top, #ffb700 0%, #ff8c00 100%);
+    background: -o-linear-gradient(top, #ffb700 0%, #ff8c00 100%);
+    background: -ms-linear-gradient(top, #ffb700 0%, #ff8c00 100%);
+    background: linear-gradient(to bottom, #ffb700 0%, #ff8c00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffb700', endColorstr='#ff8c00', GradientType=0);
+    border: 1px solid #e59500;
+    color: #fff;
+}
