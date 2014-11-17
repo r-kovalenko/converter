@@ -10,7 +10,7 @@
 		a.src = g;
 		m.parentNode.insertBefore(a, m)
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-	ga('create', <?php echo Yii::app()->params->ga_id; ?>, 'auto');
+	ga('create', '<?php echo Yii::app()->params->ga_id; ?>', 'auto');
 	ga('send', 'pageview');
 </script>
 <!-- Google Tag Manager -->
@@ -29,5 +29,5 @@
 		j.src =
 			'//www.googletagmanager.com/gtm.js?id=' + i + dl;
 		f.parentNode.insertBefore(j, f);
-	})(window, document, 'script', 'dataLayer', <?php echo Yii::app()->params->gtm_id; ?>);</script>
+	})(window, document, 'script', 'dataLayer', '<?php echo Yii::app()->params->gtm_id; ?>');</script>
 <!-- End Google Tag Manager -->
