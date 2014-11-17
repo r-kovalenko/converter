@@ -101,7 +101,7 @@ class DSitemap
 		);
 		$urlset->appendChild(
 			$dom->createAttribute('xmlns:xhtml'))->appendChild(
-			$dom->createTextNode('http://www.w3.org/1999/xhtml/')
+			$dom->createTextNode('http://www.w3.org/1999/xhtml')
 		);
 		foreach ($this->items as $item) {
 			$url = $dom->createElement('url');
