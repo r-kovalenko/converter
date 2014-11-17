@@ -1,5 +1,6 @@
 <?php
 
+require_once(dirname(__FILE__) . '/protected/system.php');
 require_once(dirname(__FILE__) . '/protected/config/environment.php');
 $environment = new Environment();
 
