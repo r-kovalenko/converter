@@ -85,9 +85,9 @@ $language = Yii::app()->getLanguage();
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	<div id="header">
-		<div id="logo"><?php
-			echo CHtml::tag('img', array('src' => $base_url . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img')),
+	<div id="header" itemscope itemtype="http://schema.org/SoftwareApplication">
+		<div id="logo" itemprop="name"><?php
+			echo CHtml::tag('img', array('src' => $base_url . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img', 'itemprop' => 'image')),
 			CHtml::encode(Yii::t('translate', 'Number to string')); ?>
 		</div>
 	</div>
