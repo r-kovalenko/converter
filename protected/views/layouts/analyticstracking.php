@@ -11,6 +11,7 @@
 		m.parentNode.insertBefore(a, m)
 	})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 	ga('create', '<?php echo Yii::app()->params->ga_id; ?>', 'auto');
+	ga('require', 'displayfeatures');
 	ga('send', 'pageview');
 </script>
 <!-- Google Tag Manager -->
