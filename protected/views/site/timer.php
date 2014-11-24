@@ -40,6 +40,27 @@ $cs->registerMetaTag('index,follow', 'robots');
 		<button id="reset" type="button" onclick="reset();"><?php echo Yii::t('translate', 'Reset'); ?></button>
 	</div>
 </div>
+<div style="float: right;padding-top: 2em">
+	<!--FB -->
+	<div class="fb-like" data-href="<?php echo Yii::app()->request->getBaseUrl(true); ?>"
+	     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+	<!--VK -->
+	<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+	<div id="twlike" style="float: right;padding-top: 0.5em">
+		<a href="https://twitter.com/share" class="twitter-share-button"
+		   data-url="<?php echo Yii::app()->request->getBaseUrl(true); ?>" data-via="romakovalenkoua"
+		   data-hashtags="numbertowords">Tweet</a>
+		<script>!function (d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+				if (!d.getElementById(id)) {
+					js = d.createElement(s);
+					js.id = id;
+					js.src = p + '://platform.twitter.com/widgets.js';
+					fjs.parentNode.insertBefore(js, fjs);
+				}
+			}(document, 'script', 'twitter-wjs');</script>
+	</div>
+</div>
 <div class="checkbox-label">
 	<div>
 		<input type="checkbox" id="checkbox-label" onclick="checkbox();"/><label for="checkbox-label"></label>
@@ -51,4 +72,5 @@ $cs->registerMetaTag('index,follow', 'robots');
 <div id="seo_footer"></div>
 <script>
 	init();
+	VK.Widgets.Like("vk_like", {type: "button", height: 24});
 </script>
