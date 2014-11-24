@@ -24,19 +24,7 @@ $language = Yii::app()->getLanguage();
 	<link rel="stylesheet" type="text/css" href="<?php echo $base_url; ?>/css/form.css"/>
 	<?php
 	$cs = Yii::app()->getClientScript();
-	$cs->registerCssFile($base_url . '/css/page.css')
-	?>
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-	<?php
-	if (!empty($this->seo_description)) {
-		$cs->registerMetaTag(CHtml::encode($this->seo_description), 'description');
-	} else {
-	}
-	if (!empty($this->seo_keywords)) {
-		$cs->registerMetaTag(CHtml::encode($this->seo_keywords), 'keywords');
-	} else {
-	}
+	$cs->registerCssFile($base_url . '/css/page.css');
 	$cs->registerMetaTag(CHtml::encode($this->vk_id), null, null, array('property' => 'vk:app_id'));
 	//	for Facebook
 	$cs->registerMetaTag(CHtml::encode($this->pageTitle), null, null, array('property' => 'og:title'));
@@ -46,6 +34,9 @@ $language = Yii::app()->getLanguage();
 		$cs->registerMetaTag(CHtml::encode($this->seo_description), null, null, array('property' => 'og:description'));
 	}
 	?>
+
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
 	<!-- VK -->
 	<script type="text/javascript" src="//vk.com/js/api/openapi.js?115"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $base_url; ?>/images/favicon.ico"/>
@@ -88,7 +79,7 @@ $language = Yii::app()->getLanguage();
 	<div id="header" itemscope itemtype="http://schema.org/SoftwareApplication">
 		<div id="logo" itemprop="name"><?php
 			echo CHtml::tag('img', array('src' => $base_url . '/images/logo.png', 'width' => 20, 'height' => 20, 'class' => 'logo-img', 'itemprop' => 'image')),
-			CHtml::encode(Yii::t('translate', 'Number to string')); ?>
+			$this->head_title; ?>
 		</div>
 	</div>
 	<!-- header -->
@@ -101,6 +92,7 @@ $language = Yii::app()->getLanguage();
 		<?php $this->widget('zii.widgets.CMenu', array(
 			'items' => array(
 				array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/index')),
+				array('label' => Yii::t('translate', 'Timer'), 'url' => array('/site/timer')),
 				array('label' => Yii::t('translate', 'About'), 'url' => array('/site/page', 'view' => 'about')),
 				array('label' => Yii::t('translate', 'Contact'), 'url' => array('/site/contact')),
 			),

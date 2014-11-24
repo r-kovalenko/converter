@@ -1,9 +1,11 @@
 <?php
 /* @var $this SiteController */
 $this->pageTitle = Yii::t('translate', Yii::app()->name);
-Yii::app()->getClientScript()->registerMetaTag('index,follow', 'robots');
-Yii::app()->getClientScript()->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
+$cs = Yii::app()->getClientScript();
+$cs->registerMetaTag('index,follow', 'robots');
+$cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 ?>
+<?php include_once("seo.php") ?>
 <div id="text-description-page" class="seo-description">
 	<?php if (!empty($this->seo_footer)) { ?>
 		<div id="short_text" class="seo-description-content box-hide">

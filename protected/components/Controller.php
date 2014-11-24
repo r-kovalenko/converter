@@ -30,7 +30,7 @@ class Controller extends CController
 
 	public $vk_id = '4623138';
 	public $fb_id = '354027991426794';
-
+	public $head_title = '';
 	public function __construct($id, $module = null)
 	{
 		parent::__construct($id, $module);
@@ -57,31 +57,39 @@ class Controller extends CController
 			Yii::app()->setLanguage($this->default_language);
 //			$this->redirect($this->default_language);
 		}
-		$this->_setSeo();
+
+		//default title
+		$this->head_title = Yii::t('translate', 'Number to string');
+
 	}
 
-	protected function _setSeo($cache_valid_time = 3600)
+	protected function _setSeo($page = 'index', $cache_valid_time = 3600)
 	{
 		$seo = new Seo();
 		$model_seo = $seo::model();
 		$language = Yii::app()->getLanguage();
 
-		if (!$this->seo_description = Yii::app()->cache->get('description_' . $language)) {
-			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'description_' . $language))) {
+		$key = 'description_' . $page . '_' . $language;
+		if (!$this->seo_description = Yii::app()->cache->get($key)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => $key))) {
 				$this->seo_description = $record->text;
-				Yii::app()->cache->set('description_' . $language, $record->text, $cache_valid_time);
+				Yii::app()->cache->set($key, $record->text, $cache_valid_time);
 			}
 		}
-		if (!$this->seo_keywords = Yii::app()->cache->get('keywords_' . $language)) {
-			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'keywords_' . $language))) {
+
+		$key = 'keywords_' . $page . '_' . $language;
+		if (!$this->seo_keywords = Yii::app()->cache->get($key)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => $key))) {
 				$this->seo_keywords = $record->text;
-				Yii::app()->cache->set('keywords_' . $language, $record->text, $cache_valid_time);
+				Yii::app()->cache->set($key, $record->text, $cache_valid_time);
 			}
 		}
-		if (!$this->seo_footer = Yii::app()->cache->get('footer_' . $language)) {
-			if ($record = $model_seo->find('name=:myParams', array(':myParams' => 'footer_' . $language))) {
+
+		$key = 'footer_' . $page . '_' . $language;
+		if (!$this->seo_footer = Yii::app()->cache->get($key)) {
+			if ($record = $model_seo->find('name=:myParams', array(':myParams' => $key))) {
 				$this->seo_footer = $record->text;
-				Yii::app()->cache->set('footer_' . $language, $record->text, $cache_valid_time);
+				Yii::app()->cache->set($key, $record->text, $cache_valid_time);
 			}
 		}
 	}

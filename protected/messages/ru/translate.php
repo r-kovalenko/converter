@@ -20,6 +20,11 @@ return array(
 	'Letters are not case-sensitive' => 'Буквы регистро-независимы',
 	'Submit' => 'Отправить',
 	'Just calendar now...' => 'Пока только календарик',
-	'All Rights Reserved' => 'Все права защищены'
+	'All Rights Reserved' => 'Все права защищены',
 
+	'Timer' => 'Секундомер',
+	'Start' => 'Старт',
+	'Stop' => 'Стоп',
+	'Reset' => 'Стереть',
+	'Milliseconds' => 'Миллисекунды'
 );

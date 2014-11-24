@@ -1,0 +1,132 @@
+.timer_container {
+    margin: 40px 0px 0px;
+    position: relative;
+    text-align: center;
+}
+
+.timer {
+    display: inline-block;
+    padding: 25px;
+    background: linear-gradient(top, #222, #444);
+    overflow: hidden;
+    border: 7px solid #efefef;
+    border-radius: 5px;
+    position: relative;
+    font-size: 190px;
+    box-shadow: inset 0 -2px 30px 1px rgba(0, 0, 0, 0.75), 0 -2px 10px 1px rgba(0, 0, 0, 1);
+    font-weight: bold;
+}
+
+.timer div {
+    float: left;
+    color: #041e93;
+}
+
+.timer_controls {
+    margin: 20px 0px;
+}
+
+.timer_controls button {
+    cursor: pointer;
+    padding: 30px 60px;
+    margin: 10px 15px;
+    background: #efefef;
+    font-family: Arial, Helvetica, FreeSans, "Liberation Sans", "Nimbus Sans L", sans-serif;
+    font-size: 40px;
+    border: 4px solid #efefef;
+    border-radius: 7px;
+    box-shadow: 0 -2px 10px 1px rgba(8, 3, 23, 0.75),
+    0 5px 20px -10px rgba(0, 0, 0, 1);
+}
+
+.timer_controls button:hover {
+    background: #15cda0;
+}
+
+.timer_controls button:active {
+    background-image: -moz-linear-gradient(#2F96B4, #5BC0DE); /* Firefox */
+    background-image: -webkit-linear-gradient(#2F96B4, #5BC0DE); /* Chrome, Safari */
+    background-image: -ms-linear-gradient(#2F96B4, #5BC0DE); /* IE-10 */
+    background-image: -o-linear-gradient(#2F96B4, #5BC0DE); /* Opera */
+    border-bottom: 1px solid #5BC0DE;
+    /* добавляем внутренние тени */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+    /* градиент для IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#2F96B4', EndColorStr='#5BC0DE', GradientType=0);
+}
+
+.checkbox-label {
+    margin: 40px 40px;
+    padding: 10px;
+}
+
+.checkbox-label div {
+    cursor: pointer;
+    float: left;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.checkbox-label input {
+    display: none;
+}
+
+.checkbox-label label {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: #ddd linear-gradient(#ccc, #fff);
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, .15),
+    0 2px 5px rgba(200, 200, 200, .1);
+    cursor: pointer;
+}
+
+.checkbox-label label:after {
+    content: "";
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    width: 20%;
+    height: 20%;
+    border-radius: 100%;
+    background: #969696 radial-gradient(40% 35%, #ccc, #969696 60%);
+    box-shadow: inset 0 2px 4px 1px rgba(0, 0, 0, .3),
+    0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 1px 0 white;
+}
+
+.checkbox-label label:before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    bottom: 8%;
+    left: 8%;
+    border-radius: 100%;
+    background: #eaeaea;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    inset 0 -5px 5px rgba(100, 100, 100, .1),
+    inset 0 5px 5px rgba(255, 255, 255, .3);
+}
+
+.checkbox-label input:checked ~ label:before {
+    background: #e5e5e5 linear-gradient(#dedede, #fdfdfd);
+}
+
+.checkbox-label input:checked ~ label:after {
+    background: #25d025 radial-gradient(40% 35%, #5aef5a, #25d025 60%);
+    box-shadow: inset 0 3px 5px 1px rgba(0, 0, 0, .1),
+    0 1px 0 rgba(255, 255, 255, .4),
+    0 0 10px 2px rgba(0, 210, 0, .5);
+}
+
+@font-face {
+    font-family: 'digital';
+    src: url('DS-DIGI.TTF');
+}

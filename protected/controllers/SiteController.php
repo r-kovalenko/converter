@@ -49,7 +49,17 @@ class SiteController extends Controller
 		}
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+
+		$this->_setSeo('index');
+
 		$this->render('index', array('model' => $model));
+	}
+
+	public function actionTimer()
+	{
+		$this->head_title = Yii::t('translate', 'Timer');
+		$this->_setSeo('timer');
+		$this->render('timer');
 	}
 
 	/**
