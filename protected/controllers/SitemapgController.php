@@ -7,7 +7,7 @@ class SitemapgController extends Controller
 
 	public function actionIndex()
 	{
-		if (!$xml = Yii::app()->cache->get('sitemap')) {
+		if (!$xml = Yii::app()->cache->get('sitemap_google')) {
 
 			$sitemap = new DSitemap();
 
@@ -32,7 +32,7 @@ class SitemapgController extends Controller
 			}
 
 			$xml = $sitemap->render();
-			Yii::app()->cache->set('sitemap', $xml, self::KEEP_DELAY);
+			Yii::app()->cache->set('sitemap_google', $xml, self::KEEP_DELAY);
 		}
 
 		header("Content-type: text/xml");
