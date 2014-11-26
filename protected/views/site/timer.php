@@ -45,7 +45,9 @@ $cs->registerMetaTag('index,follow', 'robots');
 	<div class="fb-like" data-href="<?php echo Yii::app()->request->getBaseUrl(true); ?>"
 	     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
 	<!--VK -->
-	<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+	<?php if ($language !== 'en') { ?>
+		<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+	<?php } ?>
 	<div id="twlike" style="float: right;padding-top: 0.5em">
 		<a href="https://twitter.com/share" class="twitter-share-button"
 		   data-url="<?php echo Yii::app()->request->getBaseUrl(true); ?>" data-via="romakovalenkoua"
@@ -60,6 +62,7 @@ $cs->registerMetaTag('index,follow', 'robots');
 				}
 			}(document, 'script', 'twitter-wjs');</script>
 	</div>
+	<div class="g-plusone" data-size="medium"></div>
 </div>
 <div class="checkbox-label">
 	<div>
@@ -72,5 +75,17 @@ $cs->registerMetaTag('index,follow', 'robots');
 <div id="seo_footer"></div>
 <script>
 	init();
+	<?php if ($language !== 'en') { ?>
 	VK.Widgets.Like("vk_like", {type: "button", height: 24});
+	<?php } ?>
+	window.___gcfg = {lang: '<?php echo $language; ?>'};
+
+	(function () {
+		var po = document.createElement('script');
+		po.type = 'text/javascript';
+		po.async = true;
+		po.src = 'https://apis.google.com/js/platform.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(po, s);
+	})();
 </script>
