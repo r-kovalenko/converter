@@ -30,6 +30,7 @@ class Controller extends CController
 
 	public $vk_id = '4623138';
 	public $fb_id = '354027991426794';
+	public $mailru_id = '2595566';
 	public $head_title = '';
 	public function __construct($id, $module = null)
 	{
