@@ -142,10 +142,35 @@ $language = Yii::app()->getLanguage();
 
 </div>
 <!-- page -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter<?php echo $this->yandex_id; ?> = new Ya.Metrika({id:<?php echo $this->yandex_id; ?>,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true});
+			} catch(e) { }
+		});
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/<?php echo $this->yandex_id; ?>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <!-- Rating@Mail.ru counter -->
 <script type="text/javascript">
 	var _tmr = _tmr || [];
-	_tmr.push({id: "<?php echo $this->mailru_id ?>", type: "pageView", start: (new Date()).getTime()});
+	_tmr.push({id: "<?php echo $this->mailru_id; ?>", type: "pageView", start: (new Date()).getTime()});
 	(function (d, w) {
 		var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
 		ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
@@ -153,7 +178,7 @@ $language = Yii::app()->getLanguage();
 		if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
 	})(document, window);
 </script><noscript><div style="position:absolute;left:-10000px;">
-		<img src="//top-fwz1.mail.ru/counter?id=<?php echo $this->mailru_id ?>;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+		<img src="//top-fwz1.mail.ru/counter?id=<?php echo $this->mailru_id; ?>;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
 	</div></noscript>
 <!-- //Rating@Mail.ru counter -->
 </body>
