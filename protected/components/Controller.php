@@ -28,9 +28,8 @@ class Controller extends CController
 	public $seo_keywords = '';
 	public $seo_footer = '';
 
-	public $vk_id = '4623138';
-	public $fb_id = '354027991426794';
 	public $head_title = '';
+
 	public function __construct($id, $module = null)
 	{
 		parent::__construct($id, $module);

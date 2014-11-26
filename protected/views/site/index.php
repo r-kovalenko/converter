@@ -4,6 +4,7 @@ $this->pageTitle = Yii::t('translate', Yii::app()->name);
 $cs = Yii::app()->getClientScript();
 $cs->registerMetaTag('index,follow', 'robots');
 $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
+$language = Yii::app()->getLanguage();
 ?>
 <?php include_once("seo.php") ?>
 <div id="text-description-page" class="seo-description">
@@ -34,7 +35,9 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 		<div class="fb-like" data-href="<?php echo Yii::app()->request->getBaseUrl(true); ?>"
 		     data-width="164 " data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
 		<!--VK -->
+		<?php if ($language !== 'en') { ?>
 		<div id="vk_like" style="float: right;padding-top: 0.5em"></div>
+		<?php } ?>
 		<div id="twlike" style="float: right;padding-top: 0.5em">
 			<a href="https://twitter.com/share" class="twitter-share-button"
 			   data-url="<?php echo Yii::app()->request->getBaseUrl(true); ?>" data-via="romakovalenkoua"
@@ -49,6 +52,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 					}
 				}(document, 'script', 'twitter-wjs');</script>
 		</div>
+		<div class="g-plusone" data-size="medium"></div>
 	</div>
 	<div class="row">
 		<?php //echo $form->labelEx($model, CHtml::encode(Yii::t('translate', 'Number')), array('for' => 'form_input', 'class' => 'form-label')); ?>
@@ -71,4 +75,18 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 	</p>
 </div>
 <div id="seo_footer"></div>
-<script type="text/javascript">VK.Widgets.Like("vk_like", {type: "button", height: 24});</script>
+<script type="text/javascript">
+	<?php if ($language !== 'en') { ?>
+	VK.Widgets.Like("vk_like", {type: "button", height: 24});
+	<?php } ?>
+	window.___gcfg = {lang: '<?php echo $language; ?>'};
+
+	(function () {
+		var po = document.createElement('script');
+		po.type = 'text/javascript';
+		po.async = true;
+		po.src = 'https://apis.google.com/js/platform.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(po, s);
+	})();
+</script>
