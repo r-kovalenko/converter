@@ -71,6 +71,10 @@ return array(
 		'languages' => array('en' => 'English', 'ru' => 'Русский', 'uk' => 'Українська'),
 		'ga_id' => 'UA-56605927-1',
 		'gtm_id' => 'GTM-MKKPTS',
+		'yandex_id' => '27206333',
+		'mailru_id' => '2595566',
+		'vk_id' => '4623138',
+		'fb_id' => '354027991426794',
 		'environment' => $this->_mode,
 	),
 );
