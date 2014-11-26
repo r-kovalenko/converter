@@ -92,7 +92,7 @@ $language = Yii::app()->getLanguage();
 		<?php $this->widget('zii.widgets.CMenu', array(
 			'items' => array(
 				array('label' => Yii::t('zii', 'Home'), 'url' => array('/site/index')),
-				array('label' => Yii::t('translate', 'Timer'), 'url' => array('/site/timer')),
+				array('label' => Yii::t('translate', 'Stopwatch'), 'url' => array('/site/timer')),
 				array('label' => Yii::t('translate', 'About'), 'url' => array('/site/page', 'view' => 'about')),
 				array('label' => Yii::t('translate', 'Contact'), 'url' => array('/site/contact')),
 			),

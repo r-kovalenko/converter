@@ -22,7 +22,8 @@ return array(
 	'Just calendar now...' => 'Пока только календарик',
 	'All Rights Reserved' => 'Все права защищены',
 
-	'Timer' => 'Секундомер',
+	'Timer' => 'Таймер',
+	'Stopwatch' => 'Секундомер',
 	'Start' => 'Старт',
 	'Stop' => 'Стоп',
 	'Reset' => 'Стереть',

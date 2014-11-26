@@ -57,7 +57,7 @@ class SiteController extends Controller
 
 	public function actionTimer()
 	{
-		$this->head_title = Yii::t('translate', 'Timer');
+		$this->head_title = Yii::t('translate', 'Stopwatch');
 		$this->_setSeo('timer');
 		$this->render('timer');
 	}

@@ -1,15 +1,17 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle = Yii::t('translate', 'Timer');
+$this->pageTitle = Yii::t('translate', 'Stopwatch');
 $base_url = Yii::app()->request->getBaseUrl();
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile($base_url . '/css/timer.css');
 $cs->registerScriptFile($base_url . '/js/timer.js');
 $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/page.js');
 $cs->registerMetaTag('index,follow', 'robots');
+$language = Yii::app()->getLanguage();
 ?>
 <?php include_once("seo.php") ?>
+<h1 style="display:none"><?php echo Yii::t('translate', 'Timer') ?></h1>
 <div id="text-description-page" class="seo-description">
 	<?php if (!empty($this->seo_footer)) { ?>
 		<div id="short_text" class="seo-description-content box-hide">
