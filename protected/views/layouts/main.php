@@ -106,7 +106,13 @@ $language = Yii::app()->getLanguage();
 	<?php endif ?>
 
 	<?php echo $content; ?>
-
+	<?php if ($language == 'ru') { ?>
+		<div style="text-align:center">
+			<a href="http://recreativ.ru/?r=24038" target="_blank">
+				<img src="http://recreativ.ru/images/banners/baner2.gif" border=0 width=468 height=60>
+			</a>
+		</div>
+	<?php } ?>
 	<div class="clear"></div>
 
 	<div id="footer">
@@ -121,6 +127,7 @@ $language = Yii::app()->getLanguage();
 				</noindex>
 			</div>
 		<?php } ?>
+
 		<div style="display: inline-block">
 			Copyright &copy; <?php echo date('Y'); ?>.<br/>
 			<?php echo Yii::t('translate', 'All Rights Reserved'); ?>.<br/>
