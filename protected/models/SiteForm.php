@@ -93,13 +93,14 @@ class SiteForm extends CFormModel
 				$temp = $this->convertThreeDigitsEn($portion);
 
 				if (is_array($temp)) {
+					$temp_first_key = key($temp);
 					if ($key > 0 and $key <= 3) {
-						$temp[0] .= ' ' . $this->second_words_en[$key];
+						$temp[$temp_first_key] .= ' ' . $this->second_words_en[$key];
 					}
 					//replece with hyphen
-					if (isset($portion[1]) and $portion[1] > 1) {
-						$temp[0] = $temp[1] . '-' . $temp[0];
-						unset($temp[1]);
+					if (isset($portion[1]) and $portion[1] >= 2 and isset($portion[0]) and $portion[0] > 0) {
+						$temp[$temp_first_key] = $temp[$temp_first_key + 1] . '-' . $temp[$temp_first_key];
+						unset($temp[$temp_first_key + 1]);
 					}
 
 					$result = array_merge($result, $temp);
@@ -131,6 +132,7 @@ class SiteForm extends CFormModel
 				$temp = $this->convertThreeDigitsRu($portion);
 
 				if (is_array($temp)) {
+					$temp_first_key = key($temp);
 					if ($key > 0 and $key <= 3) {
 						//присваиваем название без окончания
 						$second_word = $this->second_words_ru[$key - 1][0];
@@ -152,7 +154,7 @@ class SiteForm extends CFormModel
 								$temp[0] = $this->for_thousands_ru[$last_digit - 1];
 							}
 						}
-						$temp[0] = $temp[0] . ' ' . $second_word;
+						$temp[$temp_first_key] .= ' ' . $second_word;
 					}
 
 					$result = array_merge($result, $temp);
@@ -173,21 +175,17 @@ class SiteForm extends CFormModel
 
 		foreach ($arr_reverse_number as $pos => $digit) {
 
-			if ($pos == 0 and $digit != '0') {
-				$result[0] = $this->digits_ru[$digit - 1];
+			if (($pos == 0 or $pos == 2) and $digit != '0') {
+				$result[$pos] = $this->digits_ru[$digit - 1];
 			}
 
 			if ($pos == 1 and $digit != '0') {
 				$result[$pos] = $this->tens_ru[$digit - 1];
 			}
 
-			if ($pos == 1 and $digit == 1) {
-				$result[0] = $this->teens_uk[$prev - 1];
+			if ($pos == 1 and $digit == 1 and $prev != 0) {
+				$result[0] = $this->teens_ru[$prev - 1];
 				$result[$pos] = '';
-			}
-
-			if ($pos > 1 and $digit != '0') {
-				$result[$pos] = $this->digits_ru[$digit - 1];
 			}
 
 			if ($pos == 2 and $digit != '0') {
@@ -211,25 +209,21 @@ class SiteForm extends CFormModel
 
 		foreach ($arr_reverse_number as $pos => $digit) {
 
-			if ($pos == 0 and $digit != '0') {
-				$result[0] = $this->digits_en[$digit - 1];
+			if (($pos == 0 or $pos == 2) and $digit != '0') {
+				$result[$pos] = $this->digits_en[$digit - 1];
 			}
 
 			if ($pos == 1 and $digit != '0') {
 				$result[$pos] = $this->tens_en[$digit - 1];
 			}
 
-			if ($pos == 1 and $digit == 1) {
+			if ($pos == 1 and $digit == 1 and $prev != 0) {
 				$result[0] = '';
 				$result[$pos] = $this->teens_en[$prev - 1];
 			}
 
-			if ($pos > 1 and $digit != '0') {
-				$result[$pos] = $this->digits_en[$digit - 1];
-			}
-
 			if ($pos == 2 and $digit != '0') {
-				$result[$pos] = $result[$pos] . ' ' . $this->second_words_en[0];
+				$result[$pos] .= ' ' . $this->second_words_en[0];
 			}
 
 			$prev = $digit;
@@ -260,6 +254,7 @@ class SiteForm extends CFormModel
 				$temp = $this->convertThreeDigitsUk($portion);
 
 				if (is_array($temp)) {
+					$temp_first_key = key($temp);
 					if ($key > 0 and $key <= 3) {
 						//присваиваем название без окончания
 						$second_word = $this->second_words_uk[$key - 1][0];
@@ -281,7 +276,7 @@ class SiteForm extends CFormModel
 								$temp[0] = $this->for_thousands_uk[$last_digit - 1];
 							}
 						}
-						$temp[0] = $temp[0] . ' ' . $second_word;
+						$temp[$temp_first_key] .= ' ' . $second_word;
 					}
 
 					$result = array_merge($result, $temp);
@@ -306,17 +301,13 @@ class SiteForm extends CFormModel
 				$result[0] = $this->digits_uk[$digit - 1];
 			}
 
-			if ($pos == 1 and $digit != '0') {
-				$result[$pos] = $this->tens_uk[$digit - 1];
+			if (($pos == 0 or $pos == 3) and $digit != '0') {
+				$result[$pos] = $this->digits_uk[$digit - 1];
 			}
 
-			if ($pos == 1 and $digit == 1) {
+			if ($pos == 1 and $digit == 1 and $prev != 0) {
 				$result[0] = $this->teens_uk[$prev - 1];
 				$result[$pos] = '';
-			}
-
-			if ($pos > 1 and $digit != '0') {
-				$result[$pos] = $this->digits_uk[$digit - 1];
 			}
 
 			if ($pos == 2 and $digit != '0') {
