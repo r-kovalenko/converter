@@ -11,7 +11,7 @@ $cs->registerMetaTag('index,follow', 'robots');
 $language = Yii::app()->getLanguage();
 ?>
 <?php include_once("seo.php") ?>
-<h1 style="display:none"><?php echo Yii::t('translate', 'Timer') ?></h1>
+<h1><?php echo Yii::t('translate', 'Timer') ?></h1>
 <div id="text-description-page" class="seo-description">
 	<?php if (!empty($this->seo_footer)) { ?>
 		<div id="short_text" class="seo-description-content box-hide">

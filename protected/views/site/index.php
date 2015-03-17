@@ -18,9 +18,7 @@ $language = Yii::app()->getLanguage();
 		</div>
 	<?php } ?>
 </div>
-<h1><?php echo Yii::t('translate', 'Welcome to'); ?>
-	<i>"<?php echo CHtml::encode(Yii::t('translate', Yii::app()->name)); ?>"</i>
-</h1>
+<h1><?php echo CHtml::encode(Yii::t('translate', Yii::app()->name)); ?></h1>
 <div class="form">
 	<?php $form = $this->beginWidget('CActiveForm', array(
 		'id' => 'site-form',
