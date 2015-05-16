@@ -12,7 +12,7 @@ $config = array(
 			'connectionString' => 'mysql:host=numberto.mysql.ukraine.com.ua;dbname=numberto_db',
 			'emulatePrepare' => false,
 			'username' => 'numberto_db',
-			'password' => '21tr48db',
+			'password' => require 'db_password_prod.php',
 			'charset' => 'utf8',
 		),
 

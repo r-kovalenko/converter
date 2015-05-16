@@ -20,7 +20,7 @@ $config = array(
 			'connectionString' => 'mysql:host=localhost;dbname=converter',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'owoxsql',
+			'password' => require 'db_password_local.php',
 			'charset' => 'utf8',
 		),
 		'routes' => array(
